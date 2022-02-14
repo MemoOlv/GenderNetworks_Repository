@@ -1,0 +1,24 @@
+Data adquisition
+
+You can download the ENIGH data directly from the web page from the INEGI.
+The years considered in this work is 2016, 2018 and 2020.
+The microdata used are the tables:
+viviendas.csv
+hogares.csv
+concetradohogar.csv
+poblacion.csv
+
+Links for every year aro provided in the following:
+ENIGH 2016 -> https://www.inegi.org.mx/programas/enigh/nc/2016/
+ENIGH 2018 -> https://www.inegi.org.mx/programas/enigh/nc/2018/
+ENIGH 2020 -> https://www.inegi.org.mx/programas/enigh/nc/2020/
+
+Complementary files are provided where each variable is described (in spanish):
+ENIGH 2016 -> 70282591996.pdf
+ENIGH 2018 -> enigh18_descriptor_archivos_fd_ns.pdf
+ENIGH 2020 -> 889463901242.pdf
+
+Create a folder for each version of ENIGH using the format ENIGH+year and place the csv files there.
+For example: ENIGH2016
+
+Further questions in the mail guolg@ier.unam.mx
