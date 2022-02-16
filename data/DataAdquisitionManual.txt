@@ -21,4 +21,7 @@ ENIGH 2020 -> 889463901242.pdf
 Create a folder for each version of ENIGH using the format ENIGH+year and place the csv files there.
 For example: ENIGH2016
 
+For the geograpic analysis, the relation between the locality code and the geograpical position can be found dowloading the Unique Catalogue of Geostatistical codes from INEGI
+You can find this file in https://www.inegi.org.mx/app/ageeml/
+
 Further questions in the mail guolg@ier.unam.mx
