@@ -9,6 +9,10 @@ import os
 class Data(ABC):
 
     @abstractmethod
+    def classification(self):
+        """Classification function"""
+
+    @abstractmethod
     def classification_age_generation(self):
         """Classification according age generation of members in household"""
 
@@ -48,6 +52,22 @@ class ENIGH_Data(Data):
     year: int = 2016
     clean: bool = True
     type_class: str = "Sex_HHRP_Age"
+
+
+    def classification(self, keep_columns=False) -> pd.DataFrame:
+        """Classification function"""
+        if keep_columns:
+            if self.type_class == "SexHHRP_Age":
+                return self.classification_sex_age(self.read_data())
+            elif self.type_class == "Age_Generation":
+                return self.classification_age_generation(self.read_data())
+        else:
+            if self.type_class == "SexHHRP_Age":
+                dataset = self.classification_sex_age(self.read_data())
+                dataset.drop(columns=["sex_hhrp","age"], inplace=True)
+                return dataset
+            elif self.type_class == "Age_Generation":
+                return self.classification_age_generation(self.read_data())
 
 
     def classification_age_generation(self, dataset: pd.DataFrame) -> pd.DataFrame:
