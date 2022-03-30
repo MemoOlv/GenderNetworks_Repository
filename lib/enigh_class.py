@@ -21,7 +21,7 @@ class Data(ABC):
 
     @abstractmethod
     def drop_nonessential_columns(self):
-        """Removes non-essential columns for analysis""""
+        """Removes non-essential columns for analysis"""
 
     @abstractmethod
     def read_data(self):
@@ -36,8 +36,8 @@ class Data(ABC):
         """Compute proportion of missing values for variables in ENIGH dataset"""
 
     @abstractmethod
-    def standarization(self):
-        """Standarization of dataset"""
+    def standardization(self):
+        """Standarization of dataset using Z-score"""
 
 @dataclass
 class ENIGH_Data(Data):
@@ -164,7 +164,7 @@ class ENIGH_Data(Data):
 
     def read_tables(self,table_name,year) -> pd.DataFrame:
         """Reads data from tables of ENIGH """
-        data_path = "../Data/ENIGH" + str(year) + "/"
+        data_path = "../data/ENIGH" + str(year) + "/"
         dataset = pd.read_csv(data_path+table_name,
                              index_col="folioviv",
                              low_memory=False,
