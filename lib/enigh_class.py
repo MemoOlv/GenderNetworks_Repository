@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
+import os
 
 
 class Data(ABC):
@@ -164,7 +165,7 @@ class ENIGH_Data(Data):
 
     def read_tables(self,table_name,year) -> pd.DataFrame:
         """Reads data from tables of ENIGH """
-        data_path = "../data/ENIGH" + str(year) + "/"
+        data_path = os.getcwd()+"/data/ENIGH" + str(year) + "/"
         dataset = pd.read_csv(data_path+table_name,
                              index_col="folioviv",
                              low_memory=False,
