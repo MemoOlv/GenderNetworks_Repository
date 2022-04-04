@@ -42,7 +42,7 @@ class Data(ABC):
 
     @abstractmethod
     def standardization(self):
-        """Standarization of dataset using Z-score"""
+        """Standarization of dataset using Z-score per node type"""
 
 @dataclass
 class ENIGH_Data(Data):
@@ -203,11 +203,16 @@ class ENIGH_Data(Data):
 
 
     def standardization(self) -> pd.DataFrame:
-        """Standardization of dataset"""
-        dataset_standardized = self.classification().copy()
-        for column in dataset_standardized.columns[:-1]:
-            if (dataset_standardized[column].std(ddof=0)==0):
-                dataset_standardized.drop(columns=column, inplace=True)
-            else:
-                dataset_standardized[column] = (dataset_standardized[column] - dataset_standardized[column].mean())/dataset_standardized[column].std()
-        return dataset_standardized
+        """Standarization of dataset using Z-score per node type"""
+        dataset = self.classification().copy()
+        dict_standardize = dict()
+        for node in dataset.node.unique():
+            dataset_node = dataset[dataset.node==node]
+            dataset_node = dataset_node.copy()
+            for column in dataset_node.columns[:-1]:
+                if (dataset_node[column].std(ddof=0)==0):
+                    dataset_node.drop(columns=column, inplace=True)
+                else:
+                    dataset_node[column] = (dataset_node[column] - dataset_node[column].mean())/dataset_node[column].std()
+            dict_standardize[node] = dataset_node
+        return dict_standardize
