@@ -25,6 +25,10 @@ class Data(ABC):
         """Clean data with more than 10% of null values"""
 
     @abstractmethod
+    def covariance_matrix(self):
+        """Compute covariance matrix with respect energy variable"""
+
+    @abstractmethod
     def drop_nonessential_columns(self):
         """Removes non-essential columns for analysis"""
 
@@ -135,6 +139,18 @@ class ENIGH_Data(Data):
         dataset = dataset.dropna()
         return dataset
 
+    def covariance_matrix(self) -> pd.DataFrame:
+        """Compute covariance matrix with respect energy variable"""
+        dict_covariance = dict()
+        list_dataset_nodes = list()
+        dict_standardize = self.standardization()
+        for node in dict_standardize.keys():
+            dict_covariance[node] = abs(dict_standardize[node].cov().energia)
+            dict_covariance[node].drop(["energia","vivienda"], inplace=True)
+            dict_covariance[node].rename(node, inplace=True)
+            list_dataset_nodes.append(dict_covariance[node])
+        covariance_matrix = pd.concat(list_dataset_nodes, axis=1).fillna(0)
+        return covariance_matrix
 
     def drop_nonessential_columns(self,dataset_merged):
         """Remove nonessential columns"""
