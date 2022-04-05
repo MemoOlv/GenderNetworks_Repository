@@ -33,6 +33,10 @@ class Data(ABC):
         """Removes non-essential columns for analysis"""
 
     @abstractmethod
+    def give_nodes(self):
+        """Gives the name of the nodes per type of classification"""
+
+    @abstractmethod
     def read_data(self):
         """Return ENIGH dataframe"""
 
@@ -177,6 +181,13 @@ class ENIGH_Data(Data):
                                       "est_socio_x":"est_socio"}, inplace=True)
         return dataset_merged
 
+    def give_nodes(self) -> list:
+        """Gives the name of the nodes per type of classification"""
+        if self.type_class == "Sex_HHRP_Age":
+            name_nodes = ["H1","H2","H3","H4","H5","H6","M1","M2","M3","M4","M5","M6"]
+        elif self.type_class == "Age_Generation":
+            name_nodes = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s", "G_older_50s"]
+        return name_nodes
 
     def read_data(self) -> pd.DataFrame:
         """Reads data and merge into a single dataframe"""
