@@ -25,6 +25,10 @@ class Data(ABC):
         """Clean data with more than 10% of null values"""
 
     @abstractmethod
+    def compute_representativity(self):
+        """Compute representativity of energy consumption"""
+
+    @abstractmethod
     def covariance_matrix(self):
         """Compute covariance matrix with respect energy variable"""
 
@@ -142,6 +146,18 @@ class ENIGH_Data(Data):
         dataset.drop(columns=list(column_missing),inplace=True)
         dataset = dataset.dropna()
         return dataset
+
+    def compute_representativity(self, covariance_matrix):
+        """Compute representativity of energy consumption"""
+        representativity = dict()
+        for node in covariance_matrix.columns.unique():
+            proportion = (covariance_matrix[node]/sum(covariance_matrix[node])).sort_values(
+                ascending=False).cumsum()
+            representativity[node] = proportion
+            representativity[node] = representativity[node].to_frame()
+            representativity[node]["id"] = range(1,len(representativity[node])+1)
+            representativity[node]["covariance"] = covariance_matrix[node]
+        return representativity
 
     def covariance_matrix(self) -> pd.DataFrame:
         """Compute covariance matrix with respect energy variable"""
