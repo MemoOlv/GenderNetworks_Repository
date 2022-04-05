@@ -87,7 +87,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>36) & (dataset.edad<=46),
                           (dataset.edad>46) & (dataset.edad<=56),
                           (dataset.edad>56) & (dataset.edad>=66)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         elif self.year == 2018:
             generation = [dataset.edad<=18,
@@ -96,7 +96,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>38) & (dataset.edad<=48),
                           (dataset.edad>48) & (dataset.edad<=58),
                           (dataset.edad>58) & (dataset.edad>=68)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         elif self.year == 2020:
             generation = [dataset.edad<=20,
@@ -105,7 +105,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>40) & (dataset.edad<=50),
                           (dataset.edad>50) & (dataset.edad<=60),
                           (dataset.edad>60) & (dataset.edad>=70)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         return dataset
 
