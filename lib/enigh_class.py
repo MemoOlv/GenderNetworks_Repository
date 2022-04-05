@@ -25,6 +25,10 @@ class Data(ABC):
         """Clean data with more than 10% of null values"""
 
     @abstractmethod
+    def compute_representativity(self):
+        """Compute representativity of energy consumption"""
+
+    @abstractmethod
     def covariance_matrix(self):
         """Compute covariance matrix with respect energy variable"""
 
@@ -87,7 +91,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>36) & (dataset.edad<=46),
                           (dataset.edad>46) & (dataset.edad<=56),
                           (dataset.edad>56) & (dataset.edad>=66)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         elif self.year == 2018:
             generation = [dataset.edad<=18,
@@ -96,7 +100,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>38) & (dataset.edad<=48),
                           (dataset.edad>48) & (dataset.edad<=58),
                           (dataset.edad>58) & (dataset.edad>=68)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         elif self.year == 2020:
             generation = [dataset.edad<=20,
@@ -105,7 +109,7 @@ class ENIGH_Data(Data):
                           (dataset.edad>40) & (dataset.edad<=50),
                           (dataset.edad>50) & (dataset.edad<=60),
                           (dataset.edad>60) & (dataset.edad>=70)]
-            choices = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s"]
+            choices = self.give_nodes()[:-1]
             dataset["node"] = np.select(generation, choices, default="G_older_50s")
         return dataset
 
@@ -142,6 +146,18 @@ class ENIGH_Data(Data):
         dataset.drop(columns=list(column_missing),inplace=True)
         dataset = dataset.dropna()
         return dataset
+
+    def compute_representativity(self, covariance_matrix):
+        """Compute representativity of energy consumption"""
+        representativity = dict()
+        for node in covariance_matrix.columns.unique():
+            proportion = (covariance_matrix[node]/sum(covariance_matrix[node])).sort_values(
+                ascending=False).cumsum()
+            representativity[node] = proportion
+            representativity[node] = representativity[node].to_frame()
+            representativity[node]["id"] = range(1,len(representativity[node])+1)
+            representativity[node]["covariance"] = covariance_matrix[node]
+        return representativity
 
     def covariance_matrix(self) -> pd.DataFrame:
         """Compute covariance matrix with respect energy variable"""
