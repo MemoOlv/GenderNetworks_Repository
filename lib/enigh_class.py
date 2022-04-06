@@ -41,6 +41,10 @@ class Data(ABC):
         """Gives the name of the nodes per type of classification"""
 
     @abstractmethod
+    def number_people_per_node(self):
+        """Gives the number of people per node type"""
+
+    @abstractmethod
     def read_data(self):
         """Return ENIGH dataframe"""
 
@@ -147,7 +151,8 @@ class ENIGH_Data(Data):
         dataset = dataset.dropna()
         return dataset
 
-    def compute_representativity(self, covariance_matrix):
+
+        def compute_representativity(self, covariance_matrix):
         """Compute representativity of energy consumption"""
         representativity = dict()
         for node in covariance_matrix.columns.unique():
@@ -158,6 +163,7 @@ class ENIGH_Data(Data):
             representativity[node]["id"] = range(1,len(representativity[node])+1)
             representativity[node]["covariance"] = covariance_matrix[node]
         return representativity
+
 
     def covariance_matrix(self) -> pd.DataFrame:
         """Compute covariance matrix with respect energy variable"""
@@ -197,6 +203,7 @@ class ENIGH_Data(Data):
                                       "est_socio_x":"est_socio"}, inplace=True)
         return dataset_merged
 
+
     def give_nodes(self) -> list:
         """Gives the name of the nodes per type of classification"""
         if self.type_class == "Sex_HHRP_Age":
@@ -204,6 +211,16 @@ class ENIGH_Data(Data):
         elif self.type_class == "Age_Generation":
             name_nodes = ["G_after_2000", "G_90s","G_80s","G_70s","G_60s","G_50s", "G_older_50s"]
         return name_nodes
+
+
+    def number_people_per_node(self):
+        """Gives the number of people per node type"""
+        dataset_classified = self.classification()
+        dict_number_people_per_node = dict()
+        for node in self.give_nodes():
+            dict_number_people_per_node[node] = len(dataset_classified[dataset_classified.node==node])
+        return dict_number_people_per_node
+
 
     def read_data(self) -> pd.DataFrame:
         """Reads data and merge into a single dataframe"""
