@@ -28,6 +28,10 @@ class Data(ABC):
     def compute_representativity(self):
         """Compute representativity of energy consumption"""
 
+    @abstracmethod
+    def criteria_values(self):
+        """Compute values of criteria selection variables"""
+
     @abstractmethod
     def covariance_matrix(self):
         """Compute covariance matrix with respect energy variable"""
@@ -152,7 +156,21 @@ class ENIGH_Data(Data):
         return dataset
 
 
-        def compute_representativity(self, covariance_matrix):
+    def criteria_values(self, covariance_matrix):
+        """Compute velues of criteria selection variables"""
+        dict_number_people_per_node = self.number_people_per_node()
+        dict_representativity = self.compute_representativity(covariance_matrix)
+        dict_criteria_values = dict()
+        for node in covariance_matrix.columns.unique():
+            dict_criteria_values[node] = dict_representativity[node][
+                dict_representativity[node].index==dict_representativity[node].covmul.idxmax()][["id","value"]]
+            dict_criteria_values[node]["num"] = dict_number_people_per_node[node]
+            dict_criteria_values[node]["PC"] = node
+        criteria_values = pd.concat(dict_criteria_values, ignore_index=True)
+        return criteria_values
+
+
+    def compute_representativity(self, covariance_matrix):
         """Compute representativity of energy consumption"""
         representativity = dict()
         for node in covariance_matrix.columns.unique():
@@ -177,6 +195,7 @@ class ENIGH_Data(Data):
             list_dataset_nodes.append(dict_covariance[node])
         covariance_matrix = pd.concat(list_dataset_nodes, axis=1).fillna(0)
         return covariance_matrix
+
 
     def drop_nonessential_columns(self,dataset_merged):
         """Remove nonessential columns"""
