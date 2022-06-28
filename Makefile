@@ -12,7 +12,7 @@ module = gender_energy_networks
 	tests
 
 check:
-		black --check --line-lenght 100 src
+		black --check --line-length 100 src
 		black --check --line-length 100 tests
 		black --check --line-length 100 ${module}
 		flake8 --max-line-length 100 src
@@ -33,8 +33,8 @@ coverage: setup
 
 
 format: 
-		black --line-lenght 100 src
-		black --line-lenght 100 tests
+		black --line-length 100 src
+		black --line-length 100 tests
 		black --line-length 100 ${module}
 
 mutants: setup tests
