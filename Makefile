@@ -44,5 +44,5 @@ mutants: setup tests
 setup: clean
 		pip install --editable .
 
-tests: 
+tests: setup
 		pytest --verbose
