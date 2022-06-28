@@ -45,4 +45,4 @@ setup: clean
 		pip install --editable .
 
 tests: 
-		pytests --verbose
+		pytest --verbose
