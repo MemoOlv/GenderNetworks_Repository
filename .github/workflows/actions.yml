@@ -2,15 +2,15 @@ name: Tests
 on: push
 jobs:
   actions:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Copia repositorio
-    uses: actions/checkout@v2
-  - name: Construye imagen
-    run: docker build --tag gender_energy .
-  - name: Verifica el formato
-    run: docker run gender_energy make check
-  - name: Corre pruebas
-    run: docker run gender_energy make coverage
-  - name: Evalúa resistencia a mutaciones
-    run: docker run gender_energy make mutants
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Construye imagen
+      run: docker build --tag gender_energy .
+    - name: Verifica el formato
+      run: docker run gender_energy make check
+    - name: Corre pruebas
+      run: docker run gender_energy make coverage
+    - name: Evalúa resistencia a mutaciones
+      run: docker run gender_energy make mutants
