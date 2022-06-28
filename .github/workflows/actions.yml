@@ -2,7 +2,7 @@ name: Tests
 on: push
 jobs:
   actions:
-  run-on: ubuntu-latest
+  runs-on: ubuntu-latest
   steps:
   - name: Copia repositorio
     uses: actions/checkout@v2
