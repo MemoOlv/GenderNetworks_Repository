@@ -7,7 +7,7 @@ import csv
 
 
 def read_tables():
-    pass
+    return pd.DataFrame(data = {"a": [1, 2], "b": [3, 4]})
 
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
