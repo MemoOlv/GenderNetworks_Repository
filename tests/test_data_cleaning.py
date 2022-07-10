@@ -16,3 +16,7 @@ def test_read_tables():
     )
     expected_output.set_index("folioviv", inplace=True)
     pd.testing.assert_frame_equal(obtained_output, expected_output)
+
+
+def test_read_per_year():
+    pass
