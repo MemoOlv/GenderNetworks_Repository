@@ -6,6 +6,9 @@ from scipy.stats import multivariate_normal
 import csv
 
 
+def read_tables():
+    pass
+
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
     hog = pd.read_csv(
