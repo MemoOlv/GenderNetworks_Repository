@@ -3,11 +3,10 @@ import pandas as pd
 from functools import reduce
 import seaborn as sns
 from scipy.stats import multivariate_normal
-import csv
 
 
 def read_tables(data_path):
-    return pd.DataFrame(data = {"a": [1, 2], "b": [3, 4]})
+    return pd.read_csv(data_path)
 
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
