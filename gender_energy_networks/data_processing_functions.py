@@ -6,13 +6,19 @@ from functools import reduce
 def read_tables(data_path):
     return pd.read_csv(data_path, index_col="folioviv", na_values=["&", " "])
 
+
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
     hogares_dataframe = read_tables(path_name + "hogares.csv")
     poblacion_dataframe = read_tables(path_name + "poblacion.csv")
     concentrado_dataframe = read_tables(path_name + "concentradohogar.csv")
     vivienda_dataframe = read_tables(path_name + "viviendas.csv")
-    data_frames = [poblacion_dataframe, hogares_dataframe, concentrado_dataframe, vivienda_dataframe]
+    data_frames = [
+        poblacion_dataframe,
+        hogares_dataframe,
+        concentrado_dataframe,
+        vivienda_dataframe,
+    ]
 
     df_merged = reduce(
         lambda left, right: pd.merge(left, right, on="folioviv", how="outer"), data_frames
