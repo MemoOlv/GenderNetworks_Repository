@@ -10,6 +10,6 @@ def test_read_data():
 def test_read_tables():
     hogar_path = "tests/data/hogares_data.csv"
     obtained_output = read_tables(hogar_path)
-    expected_output = pd.DataFrame(data = {"a": [1, 2], "b": [3, 4]})
+    expected_output = pd.DataFrame(data = {"folioviv": [100003801, 100003802], "foliohog": [1, 1], "huespedes": [0, 0]})
     pd.testing.assert_frame_equal(obtained_output, expected_output)
     
