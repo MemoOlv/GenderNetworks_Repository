@@ -1,17 +1,8 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
-from networkx.algorithms import bipartite, centrality, community
-from condor import (
-    condor_object,
-    bipartite_modularity,
-    initial_community,
-    brim,
-    matrices,
-    qscores,
-    condor,
-)
-import random
+from networkx.algorithms import bipartite
+from condor import condor_object, initial_community, brim
 
 
 def network_construction(cov_matrix):
