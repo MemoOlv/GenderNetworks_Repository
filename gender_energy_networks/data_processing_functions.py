@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 from functools import reduce
-import seaborn as sns
-from scipy.stats import multivariate_normal
 
 
 def read_tables(data_path):
@@ -10,22 +8,11 @@ def read_tables(data_path):
 
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
-    hog = pd.read_csv(
-        path_name + "hogares.csv", index_col="folioviv", low_memory=False, na_values=[" ", "&"]
-    )
-    pob = pd.read_csv(
-        path_name + "poblacion.csv", index_col="folioviv", low_memory=False, na_values=[" ", "&"]
-    )
-    conc = pd.read_csv(
-        path_name + "concentradohogar.csv",
-        index_col="folioviv",
-        low_memory=False,
-        na_values=[" ", "&"],
-    )
-    viv = pd.read_csv(
-        path_name + "viviendas.csv", index_col="folioviv", low_memory=False, na_values=[" ", "&"]
-    )
-    data_frames = [pob, hog, conc, viv]
+    hogares_dataframe = read_tables(path_name + "hogares.csv")
+    poblacion_dataframe = read_tables(path_name + "poblacion.csv")
+    concentrado_dataframe = read_tables(path_name + "concentradohogar.csv")
+    vivienda_dataframe = read_tables(path_name + "viviendas.csv")
+    data_frames = [poblacion_dataframe, hogares_dataframe, concentrado_dataframe, vivienda_dataframe]
 
     df_merged = reduce(
         lambda left, right: pd.merge(left, right, on="folioviv", how="outer"), data_frames
