@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from gender_energy_networks import read_data, read_tables
+from gender_energy_networks import read_data, read_tables, merge_data
 
 
 def test_read_data():
@@ -18,5 +18,5 @@ def test_read_tables():
     pd.testing.assert_frame_equal(obtained_output, expected_output)
 
 
-def test_read_per_year():
-    pass
+def test_merge_data():
+    merge_data()
