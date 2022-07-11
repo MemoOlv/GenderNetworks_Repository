@@ -38,4 +38,5 @@ def test_merge_data():
             "edad_jefe": [33, 29]
         }
     )
+    obtained_merged_dataframe.set_index("folioviv", inplace=True)
     pd.testing.assert_frame_equal(obtained_merged_dataframe, expected_merged_dataframe)
