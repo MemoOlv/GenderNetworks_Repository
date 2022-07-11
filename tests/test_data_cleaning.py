@@ -21,6 +21,8 @@ def test_read_tables():
 def test_merge_data():
     dataframe_one = pd.DataFrame(data={"a": [1, 2], "b": [3, 4]})
     dataframe_two = pd.DataFrame(data={"a": [1, 2], "c": [3, 4]})
-    merge_data(dataframe_one, dataframe_two)
+    expected_merged_dataframe = merge_data(dataframe_one, dataframe_two)
+    obtained_merged_dataframe = pd.DataFrame(data={"a": [1, 2], "b": [3, 4]})
+    pd.testing.assert_frame_equal(obtained_merged_dataframe, expected_merged_dataframe)
 
     
