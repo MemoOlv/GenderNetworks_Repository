@@ -7,7 +7,9 @@ def read_tables(data_path):
     return pd.read_csv(data_path, index_col="folioviv", na_values=["&", " "])
 
 def merge_data(dataframe_one, dataframe_two):
-    pass
+    dataframe_one = pd.DataFrame(data={"a": [1, 2], "b": [3, 4]})
+    dataframe_two = pd.DataFrame(data={"a": [1, 2], "c": [3, 4]})
+    return dataframe_one
 
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
