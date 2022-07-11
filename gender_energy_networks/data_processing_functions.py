@@ -6,7 +6,7 @@ from functools import reduce
 def read_tables(data_path):
     return pd.read_csv(data_path, index_col="folioviv", na_values=["&", " "])
 
-def merge_data():
+def merge_data(dataframe_one, dataframe_two):
     pass
 
 def read_data(year, data_path):
