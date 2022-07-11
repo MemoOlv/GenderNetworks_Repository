@@ -16,19 +16,26 @@ def test_read_tables():
     )
     expected_output.set_index("folioviv", inplace=True)
     pd.testing.assert_frame_equal(obtained_output, expected_output)
-
-
+    
+    expected_output = pd.DataFrame(
+        data={"folioviv": [100003801, 100003802], "foliohog": [np.nan, np.nan], "huespedes": [0, 0]}
+    )
 
 def test_merge_data():
-    dataframe_one = pd.DataFrame(data={"a": [1, 2], "b": [3, 4]})
-    dataframe_two = pd.DataFrame(data={"a": [1, 2], "c": [3, 4], "b": [5, 6]})
-    expected_merged_dataframe = merge_data(dataframe_one, dataframe_two)
+    hogar_path = "tests/data/hogares_data.csv"
+    concentrado_path = "tests/data/concentrado_data.csv"
+
+    hogares_dataframe = read_tables(hogar_path)
+    concentrado_dataframe = read_tables(concentrado_path)
+
+    expected_merged_dataframe = merge_data(hogares_dataframe, concentrado_dataframe)
     obtained_merged_dataframe = pd.DataFrame(
         data={
-            "a_x": [1.0, 2.0, np.nan, np.nan],
-            "b": [3, 4, 5, 6],
-            "a_y": [np.nan, np.nan, 1.0, 2.0],
-            "c": [np.nan, np.nan, 3.0, 4.0],
+            "folioviv": [100003801, 100003801],
+            "foliohog_x": [1, 1],
+            "acc_alim1": [1, 2],
+            "foliohog_y": [1, 1],
+            "edad_jefe": [33, 29]
         }
     )
     pd.testing.assert_frame_equal(obtained_merged_dataframe, expected_merged_dataframe)
