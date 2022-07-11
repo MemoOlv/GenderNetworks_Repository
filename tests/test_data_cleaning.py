@@ -9,7 +9,7 @@ def test_read_data():
 
 
 def test_read_tables():
-    hogar_path = "tests/data/hogares_data.csv"
+    hogar_path = "tests/data/example_data.csv"
     obtained_output = read_tables(hogar_path)
     expected_output = pd.DataFrame(
         data={"folioviv": [100003801, 100003802], "foliohog": [np.nan, np.nan], "huespedes": [0, 0]}
