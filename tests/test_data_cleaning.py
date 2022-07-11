@@ -22,7 +22,12 @@ def test_merge_data():
     dataframe_one = pd.DataFrame(data={"a": [1, 2], "b": [3, 4]})
     dataframe_two = pd.DataFrame(data={"a": [1, 2], "c": [3, 4], "b": [5, 6]})
     expected_merged_dataframe = merge_data(dataframe_one, dataframe_two)
-    obtained_merged_dataframe = pd.DataFrame(data={"a": [1, 2, np.nan, np.nan], "b": [3, 4, 5, 6], "c": [np.nan, np.nan, 3, 4]})
+    obtained_merged_dataframe = pd.DataFrame(
+        data={
+            "a_x": [1.0, 2.0, np.nan, np.nan],
+            "b": [3, 4, 5, 6],
+            "a_y": [np.nan, np.nan, 1.0, 2.0],
+            "c": [np.nan, np.nan, 3.0, 4.0],
+        }
+    )
     pd.testing.assert_frame_equal(obtained_merged_dataframe, expected_merged_dataframe)
-
-    
