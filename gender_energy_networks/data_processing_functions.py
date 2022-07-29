@@ -7,8 +7,8 @@ def read_tables(data_path):
     return pd.read_csv(data_path, index_col="folioviv", na_values=["&", " "])
 
 
-def merge_data(dataframe_one, dataframe_two):
-    return pd.merge(dataframe_one, dataframe_two, on="folioviv", how="outer")
+def merge_data(list_of_dataframes):
+    return reduce(lambda left, right: pd.merge(left, right, on="folioviv", how="outer"), list_of_dataframes)
 
 
 def read_data(year, data_path):
