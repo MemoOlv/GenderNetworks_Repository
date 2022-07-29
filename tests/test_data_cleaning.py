@@ -4,8 +4,15 @@ from gender_energy_networks import read_data, read_tables, merge_data
 
 
 def test_read_data():
-    read_data()
-    pass
+    data_path = "data/"
+    year = "2016"
+    ENIGH2016 = read_data(year, data_path)
+    obtained_length = len(ENIGH2016)
+    expected_length = 285569
+    assert obtained_length == expected_length
+    obtained_columns_length = len(ENIGH2016.columns)
+    expected_columns_length = 487
+    assert obtained_columns_length == expected_columns_length
 
 
 def test_read_tables():
