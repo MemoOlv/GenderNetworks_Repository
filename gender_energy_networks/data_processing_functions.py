@@ -24,9 +24,7 @@ def read_data(year, data_path):
         vivienda_dataframe,
     ]
 
-    df_merged = reduce(
-        lambda left, right: pd.merge(left, right, on="folioviv", how="outer"), data_frames
-    )
+    df_merged = merge_data(data_frames)
     if int(year) >= 2018:
         df_merged.drop(
             columns=[
