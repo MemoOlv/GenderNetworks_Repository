@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+
 def strg(variable):
     var = variable.astype(int).apply(str)
     return var
