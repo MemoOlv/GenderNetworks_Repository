@@ -27,10 +27,9 @@ def get_enigh_tables(path):
 def read_data(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
     enigh_dataframes = get_enigh_tables(path_name)
-
-    df_merged = merge_data(enigh_dataframes)
+    enigh_dataframe_merged = merge_data(enigh_dataframes)
     if int(year) >= 2018:
-        df_merged.drop(
+        enigh_dataframe_merged.drop(
             columns=[
                 "foliohog_x",
                 "foliohog_y",
@@ -49,7 +48,7 @@ def read_data(year, data_path):
             ],
             inplace=True,
         )
-        df_merged.rename(
+        enigh_dataframe_merged.rename(
             columns={
                 "ubica_geo_x": "ubica_geo",
                 "tam_loc_x": "tam_loc",
@@ -58,7 +57,7 @@ def read_data(year, data_path):
             inplace=True,
         )
     elif int(year) == 2016:
-        df_merged.drop(
+        enigh_dataframe_merged.drop(
             columns=[
                 "foliohog_x",
                 "foliohog_y",
@@ -78,7 +77,7 @@ def read_data(year, data_path):
             ],
             inplace=True,
         )
-        df_merged.rename(
+        enigh_dataframe_merged.rename(
             columns={
                 "ubica_geo_x": "ubica_geo",
                 "tam_loc_x": "tam_loc",
@@ -86,7 +85,7 @@ def read_data(year, data_path):
             },
             inplace=True,
         )
-    return df_merged
+    return enigh_dataframe_merged
 
 
 def strg(variable):
