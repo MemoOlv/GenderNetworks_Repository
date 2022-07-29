@@ -35,7 +35,9 @@ def test_merge_data():
     hogares_dataframe = read_tables(hogar_path)
     concentrado_dataframe = read_tables(concentrado_path)
 
-    expected_merged_dataframe = merge_data(hogares_dataframe, concentrado_dataframe)
+    list_of_dataframes = [hogares_dataframe, concentrado_dataframe]
+
+    expected_merged_dataframe = merge_data(list_of_dataframes)
     obtained_merged_dataframe = pd.DataFrame(
         data={
             "folioviv": [100003801, 100003801],
