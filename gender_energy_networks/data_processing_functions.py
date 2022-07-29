@@ -11,20 +11,24 @@ def merge_data(list_of_dataframes):
     return reduce(lambda left, right: pd.merge(left, right, on="folioviv", how="outer"), list_of_dataframes)
 
 
-def read_data(year, data_path):
-    path_name = data_path + "ENIGH" + year + "/"
-    hogares_dataframe = read_tables(path_name + "hogares.csv")
-    poblacion_dataframe = read_tables(path_name + "poblacion.csv")
-    concentrado_dataframe = read_tables(path_name + "concentradohogar.csv")
-    vivienda_dataframe = read_tables(path_name + "viviendas.csv")
-    data_frames = [
+def get_enigh_tables(path):
+    hogares_dataframe = read_tables(path + "hogares.csv")
+    poblacion_dataframe = read_tables(path + "poblacion.csv")
+    concentrado_dataframe = read_tables(path + "concentradohogar.csv")
+    vivienda_dataframe = read_tables(path + "viviendas.csv")
+    enigh_dataframes = [
         poblacion_dataframe,
         hogares_dataframe,
         concentrado_dataframe,
         vivienda_dataframe,
     ]
+    return(enigh_dataframes)
 
-    df_merged = merge_data(data_frames)
+def read_data(year, data_path):
+    path_name = data_path + "ENIGH" + year + "/"
+    enigh_dataframes = get_enigh_tables(path_name)
+
+    df_merged = merge_data(enigh_dataframes)
     if int(year) >= 2018:
         df_merged.drop(
             columns=[
