@@ -24,67 +24,71 @@ def get_enigh_tables(path):
     ]
     return(enigh_dataframes)
 
-def read_data(year, data_path):
+def get_enigh_2016_dataframe(year, data_path):
     path_name = data_path + "ENIGH" + year + "/"
     enigh_dataframes = get_enigh_tables(path_name)
     enigh_dataframe_merged = merge_data(enigh_dataframes)
-    if int(year) >= 2018:
-        enigh_dataframe_merged.drop(
-            columns=[
-                "foliohog_x",
-                "foliohog_y",
-                "ubica_geo_y",
-                "tam_loc_y",
-                "est_socio_y",
-                "est_dis_y",
-                "upm_y",
-                "factor_y",
-                "smg",
-                "est_dis_x",
-                "upm_x",
-                "factor_x",
-                "numren",
-                "foliohog",
+    enigh_dataframe_merged.drop(
+        columns=[
+            "foliohog_x",
+            "foliohog_y",
+            "ubica_geo_y",
+            "tam_loc_y",
+            "est_socio_y",
+            "est_dis_y",
+            "upm_y",
+            "factor_y",
+            "smg",
+            "ageb_y",
+            "ageb_x",
+            "est_dis_x",
+            "upm_x",
+            "factor_x",
+            "numren",
             ],
             inplace=True,
-        )
-        enigh_dataframe_merged.rename(
-            columns={
-                "ubica_geo_x": "ubica_geo",
-                "tam_loc_x": "tam_loc",
-                "est_socio_x": "est_socio",
+            )
+    enigh_dataframe_merged.rename(
+        columns={
+            "ubica_geo_x": "ubica_geo",
+            "tam_loc_x": "tam_loc",
+            "est_socio_x": "est_socio",
             },
             inplace=True,
-        )
-    elif int(year) == 2016:
-        enigh_dataframe_merged.drop(
-            columns=[
-                "foliohog_x",
-                "foliohog_y",
-                "ubica_geo_y",
-                "tam_loc_y",
-                "est_socio_y",
-                "est_dis_y",
-                "upm_y",
-                "factor_y",
-                "smg",
-                "ageb_y",
-                "ageb_x",
-                "est_dis_x",
-                "upm_x",
-                "factor_x",
-                "numren",
+            )
+    return enigh_dataframe_merged
+
+def get_enigh_2018_and_2020_dataframe(year, data_path):
+    path_name = data_path + "ENIGH" + year + "/"
+    enigh_dataframes = get_enigh_tables(path_name)
+    enigh_dataframe_merged = merge_data(enigh_dataframes)
+    enigh_dataframe_merged.drop(
+        columns=[
+            "foliohog_x",
+            "foliohog_y",
+            "ubica_geo_y",
+            "tam_loc_y",
+            "est_socio_y",
+            "est_dis_y",
+            "upm_y",
+            "factor_y",
+            "smg",
+            "est_dis_x",
+            "upm_x",
+            "factor_x",
+            "numren",
+            "foliohog",
             ],
             inplace=True,
-        )
-        enigh_dataframe_merged.rename(
-            columns={
-                "ubica_geo_x": "ubica_geo",
-                "tam_loc_x": "tam_loc",
-                "est_socio_x": "est_socio",
+            )
+    enigh_dataframe_merged.rename(
+        columns={
+            "ubica_geo_x": "ubica_geo",
+            "tam_loc_x": "tam_loc",
+            "est_socio_x": "est_socio",
             },
             inplace=True,
-        )
+            )
     return enigh_dataframe_merged
 
 

@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-from gender_energy_networks import read_data, read_tables, merge_data
+from gender_energy_networks import read_tables, merge_data, get_enigh_2016_dataframe, get_enigh_2018_and_2020_dataframe
 
 
-def test_read_data():
+def test_get_enigh_2016_dataframe():
     data_path = "data/"
     year = "2016"
-    ENIGH2016 = read_data(year, data_path)
+    ENIGH2016 = get_enigh_2016_dataframe(year, data_path)
     obtained_length = len(ENIGH2016)
     expected_length = 285569
     assert obtained_length == expected_length
@@ -14,6 +14,17 @@ def test_read_data():
     expected_columns_length = 487
     assert obtained_columns_length == expected_columns_length
 
+
+def test_get_enigh_2018_and_2020_dataframe():
+    data_path = "data/"
+    year = "2018"
+    ENIGH2016 = get_enigh_2018_and_2020_dataframe(year, data_path)
+    obtained_length = len(ENIGH2016)
+    expected_length = 299746
+    assert obtained_length == expected_length
+    obtained_columns_length = len(ENIGH2016.columns)
+    expected_columns_length = 487
+    assert obtained_columns_length == expected_columns_length
 
 def test_read_tables():
     example_path = "tests/data/example_data.csv"
