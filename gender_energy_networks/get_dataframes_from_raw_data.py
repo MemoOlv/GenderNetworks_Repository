@@ -3,35 +3,37 @@ import pandas as pd
 from functools import reduce
 
 
-def get_enigh_2016_dataframe(year, data_path):
-    path_name = data_path + "ENIGH" + year + "/"
-    enigh_dataframes = get_enigh_tables(path_name)
-    enigh_dataframe_merged = merge_data(enigh_dataframes)
-    enigh_dataframe_merged.drop(
+def get_enigh_2016_dataframe(year):
+    enigh_dataframes = get_dataframes_form_year(year)
+    enigh_dataframes.drop(
         columns=list_columns_to_drop_enigh_2016,
         inplace=True,
     )
-    enigh_dataframe_merged.rename(
+    enigh_dataframes.rename(
         columns=columns_to_rename,
         inplace=True,
     )
-    return enigh_dataframe_merged
+    return enigh_dataframes
 
 
-def get_enigh_2018_and_2020_dataframe(year, data_path):
-    path_name = data_path + "ENIGH" + year + "/"
-    enigh_dataframes = get_enigh_tables(path_name)
-    enigh_dataframe_merged = merge_data(enigh_dataframes)
-    enigh_dataframe_merged.drop(
+def get_enigh_2018_and_2020_dataframe(year):
+    enigh_dataframes = get_dataframes_form_year(year)
+    enigh_dataframes.drop(
         columns=list_columns_to_drop_enigh_2018_and_2020,
         inplace=True,
     )
-    enigh_dataframe_merged.rename(
+    enigh_dataframes.rename(
         columns=columns_to_rename,
         inplace=True,
     )
-    return enigh_dataframe_merged
+    return enigh_dataframes
 
+
+def get_dataframes_form_year(year):
+    path_name = "data/ENIGH" + year + "/"
+    enigh_dataframes = get_enigh_tables(path_name)
+    enigh_dataframe_merged = merge_data(enigh_dataframes)
+    return enigh_dataframe_merged
 
 def get_enigh_tables(path):
     hogares_dataframe = read_tables(path + "hogares.csv")

@@ -9,9 +9,8 @@ from gender_energy_networks import (
 
 
 def test_get_enigh_2016_dataframe():
-    data_path = "data/"
     year = "2016"
-    ENIGH2016 = get_enigh_2016_dataframe(year, data_path)
+    ENIGH2016 = get_enigh_2016_dataframe(year)
     obtained_length = len(ENIGH2016)
     expected_length = 285569
     assert obtained_length == expected_length
@@ -21,9 +20,8 @@ def test_get_enigh_2016_dataframe():
 
 
 def test_get_enigh_2018_and_2020_dataframe():
-    data_path = "data/"
     year = "2018"
-    ENIGH2016 = get_enigh_2018_and_2020_dataframe(year, data_path)
+    ENIGH2016 = get_enigh_2018_and_2020_dataframe(year)
     obtained_length = len(ENIGH2016)
     expected_length = 299746
     assert obtained_length == expected_length
