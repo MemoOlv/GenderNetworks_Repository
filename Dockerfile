@@ -14,4 +14,5 @@ RUN pip install --upgrade pip && pip install \
     seaborn \
     numpy \
     matplotlib
-    
+
+RUN pip install git+https://github.com/genisott/pycondor.git
