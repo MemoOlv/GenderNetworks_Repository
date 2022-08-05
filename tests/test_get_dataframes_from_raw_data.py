@@ -3,32 +3,32 @@ import numpy as np
 from gender_energy_networks import (
     read_tables,
     merge_data,
-    get_enigh_2016_dataframe,
-    get_enigh_2018_and_2020_dataframe,
+    get_enigh_dataframe,
+    ENIGH_database,
 )
 
 
-def test_get_enigh_2016_dataframe():
-    data_path = "data/"
-    year = "2016"
-    ENIGH2016 = get_enigh_2016_dataframe(year, data_path)
-    obtained_length = len(ENIGH2016)
+def test_enigh_database_read_data_2016():
+    year = 2016
+    ENIGH = ENIGH_database()
+    ENIGH.set_year(year)
+    ENIGH2016_dataframe = ENIGH.read_data()
+    obtained_length = len(ENIGH2016_dataframe)
     expected_length = 285569
     assert obtained_length == expected_length
-    obtained_columns_length = len(ENIGH2016.columns)
-    expected_columns_length = 487
+    obtained_columns_length = len(ENIGH2016_dataframe.columns)
+    expected_columns_length = 489
     assert obtained_columns_length == expected_columns_length
 
 
-def test_get_enigh_2018_and_2020_dataframe():
-    data_path = "data/"
+def test_get_enigh_dataframe_2018():
     year = "2018"
-    ENIGH2016 = get_enigh_2018_and_2020_dataframe(year, data_path)
-    obtained_length = len(ENIGH2016)
+    ENIGH2018 = get_enigh_dataframe(year)
+    obtained_length = len(ENIGH2018)
     expected_length = 299746
     assert obtained_length == expected_length
-    obtained_columns_length = len(ENIGH2016.columns)
-    expected_columns_length = 487
+    obtained_columns_length = len(ENIGH2018.columns)
+    expected_columns_length = 488
     assert obtained_columns_length == expected_columns_length
 
 

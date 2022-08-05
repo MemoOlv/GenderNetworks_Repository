@@ -1,35 +1,47 @@
-import numpy as np
 import pandas as pd
 from functools import reduce
 
 
-def get_enigh_2016_dataframe(year, data_path):
-    path_name = data_path + "ENIGH" + year + "/"
-    enigh_dataframes = get_enigh_tables(path_name)
-    enigh_dataframe_merged = merge_data(enigh_dataframes)
-    enigh_dataframe_merged.drop(
-        columns=list_columns_to_drop_enigh_2016,
+def get_enigh_dataframe(year):
+    enigh_dataframes = get_dataframes_from_year(year)
+    enigh_dataframes.drop(
+        columns=list_columns_to_drop,
         inplace=True,
     )
-    enigh_dataframe_merged.rename(
+    enigh_dataframes.rename(
         columns=columns_to_rename,
         inplace=True,
     )
-    return enigh_dataframe_merged
+    return enigh_dataframes
 
 
-def get_enigh_2018_and_2020_dataframe(year, data_path):
-    path_name = data_path + "ENIGH" + year + "/"
+list_columns_to_drop = [
+    "est_dis_x",
+    "est_dis_y",
+    "est_socio_y",
+    "factor_x",
+    "factor_y",
+    "foliohog_x",
+    "foliohog_y",
+    "numren",
+    "smg",
+    "tam_loc_y",
+    "ubica_geo_y",
+    "upm_x",
+    "upm_y",
+]
+
+columns_to_rename = {
+    "ubica_geo_x": "ubica_geo",
+    "tam_loc_x": "tam_loc",
+    "est_socio_x": "est_socio",
+}
+
+
+def get_dataframes_from_year(year):
+    path_name = "data/ENIGH" + str(year) + "/"
     enigh_dataframes = get_enigh_tables(path_name)
     enigh_dataframe_merged = merge_data(enigh_dataframes)
-    enigh_dataframe_merged.drop(
-        columns=list_columns_to_drop_enigh_2018_and_2020,
-        inplace=True,
-    )
-    enigh_dataframe_merged.rename(
-        columns=columns_to_rename,
-        inplace=True,
-    )
     return enigh_dataframe_merged
 
 
@@ -45,48 +57,6 @@ def get_enigh_tables(path):
         vivienda_dataframe,
     ]
     return enigh_dataframes
-
-
-list_columns_to_drop_enigh_2016 = [
-    "ageb_x",
-    "ageb_y",
-    "est_dis_x",
-    "est_dis_y",
-    "est_socio_y",
-    "factor_x",
-    "factor_y",
-    "foliohog_x",
-    "foliohog_y",
-    "numren",
-    "smg",
-    "tam_loc_y",
-    "ubica_geo_y",
-    "upm_x",
-    "upm_y",
-]
-
-list_columns_to_drop_enigh_2018_and_2020 = [
-    "est_dis_x",
-    "est_dis_y",
-    "est_socio_y",
-    "factor_x",
-    "factor_y",
-    "foliohog_x",
-    "foliohog_y",
-    "foliohog",
-    "numren",
-    "smg",
-    "tam_loc_y",
-    "ubica_geo_y",
-    "upm_x",
-    "upm_y",
-]
-
-columns_to_rename = {
-    "ubica_geo_x": "ubica_geo",
-    "tam_loc_x": "tam_loc",
-    "est_socio_x": "est_socio",
-}
 
 
 def read_tables(data_path):
