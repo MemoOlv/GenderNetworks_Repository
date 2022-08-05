@@ -4,7 +4,21 @@ from gender_energy_networks import (
     read_tables,
     merge_data,
     get_enigh_dataframe,
+    ENIGH_database,
 )
+
+
+def test_enigh_database_read_data_2016():
+    year = 2016
+    ENIGH = ENIGH_database()
+    ENIGH.set_year(year)
+    ENIGH2016_dataframe = ENIGH.read_data()
+    obtained_length = len(ENIGH2016_dataframe)
+    expected_length = 285569
+    assert obtained_length == expected_length
+    obtained_columns_length = len(ENIGH2016_dataframe.columns)
+    expected_columns_length = 489
+    assert obtained_columns_length == expected_columns_length
 
 
 def test_get_enigh_dataframe_year_2016():
@@ -16,7 +30,6 @@ def test_get_enigh_dataframe_year_2016():
     obtained_columns_length = len(ENIGH2016.columns)
     expected_columns_length = 489
     assert obtained_columns_length == expected_columns_length
-
 
 def test_get_enigh_dataframe_2018():
     year = "2018"
