@@ -3,23 +3,10 @@ import pandas as pd
 from functools import reduce
 
 
-def get_enigh_2016_dataframe(year):
+def get_enigh_dataframe(year):
     enigh_dataframes = get_dataframes_form_year(year)
     enigh_dataframes.drop(
-        columns=list_columns_to_drop_enigh_2016,
-        inplace=True,
-    )
-    enigh_dataframes.rename(
-        columns=columns_to_rename,
-        inplace=True,
-    )
-    return enigh_dataframes
-
-
-def get_enigh_2018_and_2020_dataframe(year):
-    enigh_dataframes = get_dataframes_form_year(year)
-    enigh_dataframes.drop(
-        columns=list_columns_to_drop_enigh_2018_and_2020,
+        columns=list_columns_to_drop,
         inplace=True,
     )
     enigh_dataframes.rename(
@@ -48,10 +35,7 @@ def get_enigh_tables(path):
     ]
     return enigh_dataframes
 
-
-list_columns_to_drop_enigh_2016 = [
-    "ageb_x",
-    "ageb_y",
+list_columns_to_drop = [
     "est_dis_x",
     "est_dis_y",
     "est_socio_y",
@@ -59,23 +43,6 @@ list_columns_to_drop_enigh_2016 = [
     "factor_y",
     "foliohog_x",
     "foliohog_y",
-    "numren",
-    "smg",
-    "tam_loc_y",
-    "ubica_geo_y",
-    "upm_x",
-    "upm_y",
-]
-
-list_columns_to_drop_enigh_2018_and_2020 = [
-    "est_dis_x",
-    "est_dis_y",
-    "est_socio_y",
-    "factor_x",
-    "factor_y",
-    "foliohog_x",
-    "foliohog_y",
-    "foliohog",
     "numren",
     "smg",
     "tam_loc_y",
