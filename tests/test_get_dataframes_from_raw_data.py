@@ -21,16 +21,6 @@ def test_enigh_database_read_data_2016():
     assert obtained_columns_length == expected_columns_length
 
 
-def test_get_enigh_dataframe_year_2016():
-    year = "2016"
-    ENIGH2016 = get_enigh_dataframe(year)
-    obtained_length = len(ENIGH2016)
-    expected_length = 285569
-    assert obtained_length == expected_length
-    obtained_columns_length = len(ENIGH2016.columns)
-    expected_columns_length = 489
-    assert obtained_columns_length == expected_columns_length
-
 def test_get_enigh_dataframe_2018():
     year = "2018"
     ENIGH2018 = get_enigh_dataframe(year)
