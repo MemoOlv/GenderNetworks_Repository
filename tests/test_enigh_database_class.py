@@ -18,3 +18,8 @@ def test_condor_installation():
     obtained_condor_object_type = type(condor_object)
     expected_condor_object_type = type(ThisClass)
     assert obtained_condor_object_type == expected_condor_object_type
+
+
+def test_ENIGH_database_clean_data():
+    ENIGH = ENIGH_database()
+    ENIGH.clean_data()
