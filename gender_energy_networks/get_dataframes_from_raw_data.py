@@ -4,7 +4,7 @@ from functools import reduce
 
 
 def get_enigh_dataframe(year):
-    enigh_dataframes = get_dataframes_form_year(year)
+    enigh_dataframes = get_dataframes_from_year(year)
     enigh_dataframes.drop(
         columns=list_columns_to_drop,
         inplace=True,
@@ -37,7 +37,7 @@ columns_to_rename = {
     "est_socio_x": "est_socio",
 }
 
-def get_dataframes_form_year(year):
+def get_dataframes_from_year(year):
     path_name = "data/ENIGH" + str(year) + "/"
     enigh_dataframes = get_enigh_tables(path_name)
     enigh_dataframe_merged = merge_data(enigh_dataframes)
