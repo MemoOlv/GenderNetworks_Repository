@@ -1,13 +1,11 @@
 import seaborn as sns
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-def plot_null_values(file_path):
+def plot_null_values(enigh_dataframe, file_path):
     sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
-    ENIGHr = pd.read_csv("data/ENIGH2016_dataframe.csv")
-    ENIGH = ENIGHr.copy()
+    ENIGH = enigh_dataframe
 
     pct_missing = []
     col_missing = []
