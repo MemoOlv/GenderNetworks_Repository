@@ -15,8 +15,9 @@ def test_plot_null_values():
 
 def test_plot_covmatrix_heatmap():
     file_path = "tests/data/plot_covmatrix_heatmap.png"
-    expected_hash = "abc"
-    plot_covmatrix_heatmap()
+    expected_hash = "80b921621f1708bd55baf2175afc83a0"
+    enigh_dataframe = pd.read_csv("data/ENIGH2016_clean.csv")
+    plot_covmatrix_heatmap(enigh_dataframe, file_path)
     obtained_hash = _get_hash_from_file(file_path)
     assert obtained_hash == expected_hash
 
