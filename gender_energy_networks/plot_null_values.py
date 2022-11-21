@@ -22,3 +22,4 @@ def plot_null_values(enigh_dataframe, file_path):
 
 def _get_percentage_missing(enigh_dataframe):
     return [np.mean(enigh_dataframe[col].isnull()) for col in enigh_dataframe.columns]
+    
