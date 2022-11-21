@@ -7,6 +7,7 @@ module = gender_energy_networks
 	clean \
 	coverage \
 	format \
+	init \
 	mutants \
 	setup \
 	tests
@@ -32,10 +33,12 @@ coverage: setup
 		pytest --cov=${module} --cov-report=term-missing --verbose
 
 
-format: 
+format:
 		black --line-length 100 src
 		black --line-length 100 tests
 		black --line-length 100 ${module}
+
+init: setup tests
 
 mutants: setup tests
 		mutmut --paths-to-mutate src
@@ -44,5 +47,5 @@ mutants: setup tests
 setup: clean
 		pip install --editable .
 
-tests: setup
+tests:
 		pytest --verbose
