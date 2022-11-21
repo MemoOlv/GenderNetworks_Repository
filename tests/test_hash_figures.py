@@ -3,6 +3,7 @@ import pandas as pd
 
 from gender_energy_networks import plot_null_values
 
+
 def test_plot_null_values():
     enigh_dataframe = pd.read_csv("tests/data/input_plot_null_values.csv")
     file_path = "tests/data/plot_null_values.png"
