@@ -7,48 +7,6 @@ def strg(variable):
     return var
 
 
-def standardization(df):
-    df_std = df.copy()
-    for column in df_std.columns[:-2]:
-        if df_std[column].std(ddof=0) == 0:
-            df_std.drop(columns=column, inplace=True)
-        else:
-            df_std[column] = (df_std[column] - df_std[column].mean()) / df_std[column].std()
-    return df_std
-
-
-def hhld_classification(df):
-    # Classification by sex of household referent person
-    sexHHRP = [(df.sexo_jefe == 1), (df.sexo_jefe == 2)]
-    choices = ["H", "M"]
-    df["sex_hhrp"] = np.select(sexHHRP, choices, default="empty")
-
-    # Classification by age range of household members
-    hh_members = [
-        (df.p12_64 > 0) & (df.p65mas == 0) & (df.menores == 0),
-        (df.p12_64 > 0) & (df.p65mas == 0) & (df.menores > 0),
-        (df.p12_64 > 0) & (df.p65mas > 0) & (df.menores == 0),
-        (df.p12_64 == 0) & (df.p65mas > 0) & (df.menores > 0),
-        (df.p12_64 == 0) & (df.p65mas > 0) & (df.menores == 0),
-        (df.p12_64 > 0) & (df.p65mas > 0) & (df.menores > 0),
-    ]
-
-    choices = [
-        "Adultos",
-        "AdultosMenores",
-        "AdultosMayores",
-        "MayoresMenores",
-        "Mayores",
-        "AdultosMayoresMenores",
-    ]
-    df["age_habit"] = np.select(hh_members, choices, default="empty")
-    df["node"] = df.sex_hhrp + df.age_habit
-
-    return df
-
-    # Fibonacci series to apply into the powerlaw visualization
-
-
 def recur_fibo(n):
     if n <= 1:
         return n
