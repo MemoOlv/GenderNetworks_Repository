@@ -1,7 +1,7 @@
 import hashlib
 import pandas as pd
 
-from gender_energy_networks import plot_null_values
+from gender_energy_networks import plot_null_values, plot_covmatrix_heatmap
 
 
 def test_plot_null_values():
@@ -12,6 +12,9 @@ def test_plot_null_values():
     expected_hash = "0684c592f94501ee3e1d8f1e4bd9c6f5"
     assert obtained_hash == expected_hash
 
+
+def test_plot_covmatrix_heatmap():
+    plot_covmatrix_heatmap()
 
 def _get_hash_from_file(file_path):
     file_content = open(file_path, "rb").read()
