@@ -14,7 +14,11 @@ def test_plot_null_values():
 
 
 def test_plot_covmatrix_heatmap():
+    file_path = "tests/data/plot_covmatrix_heatmap.png"
+    expected_hash = "abc"
     plot_covmatrix_heatmap()
+    obtained_hash = _get_hash_from_file(file_path)
+    assert obtained_hash == expected_hash
 
 def _get_hash_from_file(file_path):
     file_content = open(file_path, "rb").read()
