@@ -11,3 +11,5 @@ RUN pip install --upgrade pip && pip install \
     pytest-cov
 
 RUN pip install git+https://github.com/genisott/pycondor.git
+
+RUN make install
