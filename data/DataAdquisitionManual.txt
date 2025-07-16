@@ -8,7 +8,7 @@ hogares.csv
 concetradohogar.csv
 poblacion.csv
 
-Links for every year aro provided in the following:
+Links for every year are provided in the following:
 ENIGH 2016 -> https://www.inegi.org.mx/programas/enigh/nc/2016/
 ENIGH 2018 -> https://www.inegi.org.mx/programas/enigh/nc/2018/
 ENIGH 2020 -> https://www.inegi.org.mx/programas/enigh/nc/2020/
@@ -24,4 +24,4 @@ For example: ENIGH2016
 For the geograpic analysis, the relation between the locality code and the geograpical position can be found dowloading the Unique Catalogue of Geostatistical codes from INEGI
 You can find this file in https://www.inegi.org.mx/app/ageeml/
 
-Further questions in the mail guolg@ier.unam.mx
+Further questions in the mail guolgue@gmail.com
