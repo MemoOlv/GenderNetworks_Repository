@@ -44,7 +44,9 @@ mutants: setup tests
 		mutmut --paths-to-mutate src
 		mutmut --paths-to-mutate ${module}
 
-setup: clean
+setup: clean install
+
+install:
 		pip install --editable .
 
 tests:
