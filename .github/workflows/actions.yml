@@ -9,8 +9,8 @@ jobs:
     - name: Construye imagen
       run: docker build --tag gender_energy .
     - name: Verifica el formato
-      run: docker run gender_energy make check
+      run: docker run --volume $PWD:/workdir gender_energy make check
     - name: Corre pruebas
-      run: docker run gender_energy make coverage
+      run: docker run --volume $PWD:/workdir gender_energy make coverage
     - name: Evalúa resistencia a mutaciones
-      run: docker run gender_energy make mutants
+      run: docker run --volume $PWD:/workdir gender_energy make mutants
