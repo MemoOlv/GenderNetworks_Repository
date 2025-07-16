@@ -4,8 +4,19 @@ build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
 author = "Guillermo Olvera Guerrero"
-author-email = "guolg@ier.unam.mx"
+author-email = "guolgue@gmail.com"
 description-file = "README.md"
 home-page = "https://github.com/MemoOlv/GenderNetworks_Repository"
 module = "gender_energy_networks"
 requires-python=">=3.8"
+
+requires = [
+    "matplotlib-stubs",
+    "matplotlib",
+    "networkx-stubs",
+    "networkx",
+    "numpy",
+    "pandas-stubs",
+    "pandas",
+    "seaborn",
+]
