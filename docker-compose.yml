@@ -1,0 +1,9 @@
+services:
+  develop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: memoolv/gender_energy_networks:latest
+    command: bash
+    volumes:
+      - $PWD:/workdir
