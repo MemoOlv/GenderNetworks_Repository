@@ -5,16 +5,16 @@ import matplotlib.gridspec as gridspec
 from .household_classification import hhld_classification
 from .standardization import standardization
 
+
 def plot_covmatrix_heatmap(enigh_dataframe, file_path):
     sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
-    ENIGH =enigh_dataframe
+    ENIGH = enigh_dataframe
 
     ENIGH = hhld_classification(ENIGH)
 
     ps_list = ENIGH.node.unique()
     ENIGH["count_node"] = ENIGH.groupby("node")["node"].transform("count")
-    d = ENIGH.sort_values(by=["count_node"], ignore_index=True)
 
     ENIGH.drop(columns=["sex_hhrp", "age_habit"], inplace=True)
 
@@ -29,7 +29,6 @@ def plot_covmatrix_heatmap(enigh_dataframe, file_path):
         if (len(df.columns) > 1) & (any(df.columns.str.contains("energia"))):
             personclass_std[ps] = df
             ps_newlist.append(ps)
-
 
     personclass_energy = {}
     for ps in ps_newlist:

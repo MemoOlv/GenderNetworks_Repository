@@ -21,6 +21,7 @@ def test_plot_covmatrix_heatmap():
     obtained_hash = _get_hash_from_file(file_path)
     assert obtained_hash == expected_hash
 
+
 def _get_hash_from_file(file_path):
     file_content = open(file_path, "rb").read()
     file_hash = hashlib.md5(file_content).hexdigest()

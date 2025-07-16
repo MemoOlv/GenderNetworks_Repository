@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def hhld_classification(df):
     # Classification by sex of household referent person
     sexHHRP = [(df.sexo_jefe == 1), (df.sexo_jefe == 2)]

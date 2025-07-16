@@ -6,4 +6,3 @@ def standardization(df):
         else:
             df_std[column] = (df_std[column] - df_std[column].mean()) / df_std[column].std()
     return df_std
-    
