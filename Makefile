@@ -1,4 +1,4 @@
-all: format
+all: reports/figures/ValoresNulos2016.pdf
 
 .PHONY: \
 		all \
