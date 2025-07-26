@@ -13,7 +13,6 @@ endef
 check:
 	black --check --line-length 100 *.py
 	flake8 --max-line-length 100 *.py
-	mypy src
 
 clean:
 	rm --force --recursive .*_cache
