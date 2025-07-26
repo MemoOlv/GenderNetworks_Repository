@@ -6,16 +6,15 @@ import matplotlib.gridspec as gridspec
 import seaborn as sns
 import numpy as np
 
-sys_path = '/home/perroloco/Escritorio/GenderNetworks_Repository'
 lib_path = '/lib'
-sys.path.insert(0,sys_path+lib_path)
+sys.path.insert(0,lib_path)
 
-import data_processing_functions as dpf
+import lib.data_processing_functions as dpf
 
 sns.set_style('whitegrid',{'grid.linestyle':'--','axes.edgecolor':'0'})
 
-data_path = sys_path+'/data/'
-yr = '2020' #choices are 2016, 2018 and 2020
+data_path = 'data/'
+yr = '2016' #choices are 2016, 2018 and 2020
 
 ENIGHr = dpf.read_data(yr,data_path)
 ENIGH = ENIGHr.copy()
@@ -41,7 +40,7 @@ sns.histplot(pct_missing,
              kde=False)
 plt.xlabel('$n_{i}$', fontsize=fontsize_ticks)
 plt.ylabel('Frecuencia', fontsize=fontsize_ticks)
-plt.savefig(sys_path+'/figures/ValoresNulos'+yr+'.pdf', bbox_inches='tight')
+plt.savefig('reports/figures/ValoresNulos'+yr+'.pdf', bbox_inches='tight')
 plt.show()
 
 ENIGH.drop(columns=list(col_missing), inplace = True)
@@ -65,7 +64,7 @@ sns.histplot(pct_missing,
              kde=False)
 plt.xlabel('$n_{i}$', fontsize=fontsize_ticks)
 plt.ylabel('Frecuencia', fontsize=fontsize_ticks)
-plt.savefig(sys_path+'/figures/ValoresNuloRemoval'+yr+'.pdf', bbox_inches='tight')
+plt.savefig('reports/figures/ValoresNuloRemoval'+yr+'.pdf', bbox_inches='tight')
 plt.show()
 
 ENIGH = ENIGH.dropna()
