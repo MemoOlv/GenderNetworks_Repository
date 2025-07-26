@@ -1,9 +1,6 @@
 import numpy as np
 import pandas as pd
 from functools import reduce
-import seaborn as sns
-from scipy.stats import multivariate_normal
-import csv
 
 def read_data(year,data_path):
     path_name = data_path+'ENIGH'+year+'/'
