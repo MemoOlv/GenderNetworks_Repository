@@ -1,0 +1,14 @@
+name: Reproduce results
+on: push
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: 🐋 Construye imagen
+      run: docker build --tag memoolv/gender_networks_repository .
+    - name: 🎨 Verifica el formato
+      run: docker run memoolv/gender_networks_repository make check
+    - name: 🏃🏾 Corre scripts
+      run: docker run memoolv/gender_networks_repository make all
