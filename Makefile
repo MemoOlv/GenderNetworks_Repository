@@ -26,7 +26,7 @@ data/ENIGH2016/viviendas.csv:
 	$(checkDirectories)
 	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_viviendas_csv.zip \
 	--output data/ENIGH2016/vivienda.zip
-	unzip data/ENIGH2016/vivienda.zip -d data/ENIGH2016
+	unzip -o data/ENIGH2016/vivienda.zip -d data/ENIGH2016
 
 data/ENIGH2016/hogares.csv:
 	$(checkDirectories)
@@ -38,7 +38,7 @@ data/ENIGH2016/concentradohogar.csv:
 	$(checkDirectories)
 	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_concentradohogar_csv.zip \
 	--output data/ENIGH2016/concentradohogar.zip
-	unzip data/ENIGH2016/concentradohogar.zip -d data/ENIGH2016
+	unzip -o data/ENIGH2016/concentradohogar.zip -d data/ENIGH2016
 
 data/ENIGH2016/poblacion.csv:
 	$(checkDirectories)
