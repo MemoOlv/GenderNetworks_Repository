@@ -3,17 +3,18 @@
 import sys
 import pandas as pd
 import networkx as nx
-from networkx.algorithms import bipartite, centrality, community
+from networkx.algorithms import bipartite
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
 import random
 
+import network_analysis_functions as naf
+
 sys_path = "/home/perroloco/Escritorio/GenderNetworks_Repository"
 lib_path = "/lib"
 sys.path.insert(0, sys_path + lib_path)
 
-import network_analysis_functions as naf
 
 sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
@@ -700,7 +701,7 @@ plt.show()
 vars_c2016_1 = naf.community_description(c2016_1, var_class)
 vars_c2016_1.to_csv(sys_path + "/data/socialframeworkvariables/c2016_1.csv")
 
-## Community 2-2016
+# Community 2-2016
 
 c2016_2 = nx.subgraph(Network2016[0], C2016[0][1])
 with sns.axes_style("white"):
@@ -723,7 +724,7 @@ plt.show()
 vars_c2016_2 = naf.community_description(c2016_2, var_class)
 vars_c2016_2.to_csv(sys_path + "/data/socialframeworkvariables/c2016_2.csv")
 
-## Community 3-2016
+# Community 3-2016
 
 c2016_3 = nx.subgraph(Network2016[0], C2016[0][2])
 with sns.axes_style("white"):
@@ -745,7 +746,7 @@ plt.show()
 vars_c2016_3 = naf.community_description(c2016_3, var_class)
 vars_c2016_3.to_csv(sys_path + "/data/socialframeworkvariables/c2016_3.csv")
 
-## Community 4-2016
+# Community 4-2016
 
 c2016_4 = nx.subgraph(Network2016[0], C2016[0][3])
 with sns.axes_style("white"):
@@ -767,7 +768,7 @@ plt.show()
 vars_c2016_4 = naf.community_description(c2016_4, var_class)
 vars_c2016_4.to_csv(sys_path + "/data/socialframeworkvariables/c2016_4.csv")
 
-## Community 1-2018
+# Community 1-2018
 
 c2018_1 = nx.subgraph(Network2018[0], C2018[0][0])
 with sns.axes_style("white"):
@@ -789,7 +790,7 @@ plt.show()
 vars_c2018_1 = naf.community_description(c2018_1, var_class)
 vars_c2018_1.to_csv(sys_path + "/data/socialframeworkvariables/c2018_1.csv")
 
-## Community 2-2018
+# Community 2-2018
 
 c2018_2 = nx.subgraph(Network2018[0], C2018[0][1])
 with sns.axes_style("white"):
@@ -811,7 +812,7 @@ plt.show()
 vars_c2018_2 = naf.community_description(c2018_2, var_class)
 vars_c2018_2.to_csv(sys_path + "/data/socialframeworkvariables/c2018_2.csv")
 
-## Community 3-2018
+# Community 3-2018
 
 c2018_3 = nx.subgraph(Network2018[0], C2018[0][2])
 with sns.axes_style("white"):
@@ -834,7 +835,7 @@ plt.show()
 vars_c2018_3 = naf.community_description(c2018_3, var_class)
 vars_c2018_3.to_csv(sys_path + "/data/socialframeworkvariables/c2018_3.csv")
 
-## Community 4-2018
+# Community 4-2018
 
 c2018_4 = nx.subgraph(Network2018[0], C2018[0][3])
 with sns.axes_style("white"):
@@ -856,7 +857,7 @@ plt.show()
 vars_c2018_4 = naf.community_description(c2018_4, var_class)
 vars_c2018_4.to_csv(sys_path + "/data/socialframeworkvariables/c2018_4.csv")
 
-## Community 1-2020
+# Community 1-2020
 
 c2020_1 = nx.subgraph(Network2020[0], C2020[0][0])
 with sns.axes_style("white"):
@@ -877,7 +878,8 @@ plt.show()
 
 vars_c2020_1 = naf.community_description(c2020_1, var_class)
 vars_c2020_1.to_csv(sys_path + "/data/socialframeworkvariables/c2020_1.csv")
-## Community 2-2020
+
+# Community 2-2020
 
 c2020_2 = nx.subgraph(Network2020[0], C2020[0][1])
 with sns.axes_style("white"):
@@ -899,7 +901,7 @@ plt.show()
 vars_c2020_2 = naf.community_description(c2020_2, var_class)
 vars_c2020_2.to_csv(sys_path + "/data/socialframeworkvariables/c2020_2.csv")
 
-## Community 3-2020
+# Community 3-2020
 
 c2020_3 = nx.subgraph(Network2020[0], C2020[0][2])
 with sns.axes_style("white"):
@@ -922,7 +924,7 @@ plt.show()
 vars_c2020_3 = naf.community_description(c2020_3, var_class)
 vars_c2020_3.to_csv(sys_path + "/data/socialframeworkvariables/c2020_3.csv")
 
-## Community 4-2020
+# Community 4-2020
 
 c2020_4 = nx.subgraph(Network2020[0], C2020[0][3])
 with sns.axes_style("white"):

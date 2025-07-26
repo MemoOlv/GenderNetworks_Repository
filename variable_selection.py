@@ -5,13 +5,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
-import csv
+
+import lib.data_processing_functions as dpf
 
 sys_path = "/home/perroloco/Escritorio/GenderNetworks_Repository"
 lib_path = "/lib"
 sys.path.insert(0, sys_path + lib_path)
 
-import data_processing_functions as dpf
 
 sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 data_path = "/data/"

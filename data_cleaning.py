@@ -6,10 +6,11 @@ import matplotlib.gridspec as gridspec
 import seaborn as sns
 import numpy as np
 
+import lib.data_processing_functions as dpf
+
 lib_path = "/lib"
 sys.path.insert(0, lib_path)
 
-import lib.data_processing_functions as dpf
 
 sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
