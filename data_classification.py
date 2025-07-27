@@ -168,7 +168,8 @@ ax2.set_xlim((-1, 30))
 ax.set_ylabel("Z score Energia (-)", fontsize=fontsize_ticks)
 ax.set_xlabel("Z score Ingreso corriente (-)", fontsize=fontsize_ticks)
 ax2.set_xlabel("Z score Alfabetismo (-)", fontsize=fontsize_ticks)
-plt.savefig("reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
+plt.savefig(
+    "reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
 )
 plt.show()
 
