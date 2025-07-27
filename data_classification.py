@@ -10,17 +10,16 @@ from scipy.stats import multivariate_normal
 
 import lib.data_processing_functions as dpf
 
-sys_path = "/home/perroloco/Escritorio/GenderNetworks_Repository"
-lib_path = "/lib"
-sys.path.insert(0, sys_path + lib_path)
+lib_path = "lib"
+sys.path.insert(0, lib_path)
 
 
 sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
-data_path = "/data/"
-yr = "2020"  # choices are 2016, 2018 and 2020
+data_path = "data/"
+yr = "2016"  # choices are 2016, 2018 and 2020
 
-ENIGHr = pd.read_csv(sys_path + data_path + "ENIGH" + yr + "_clean.csv", index_col=[0])
+ENIGHr = pd.read_csv(data_path + "ENIGH" + yr + "_clean.csv", index_col=[0])
 ENIGH = ENIGHr.copy()
 
 ENIGH = dpf.hhld_classification(ENIGH)
@@ -44,12 +43,12 @@ ax.legend(loc="best", frameon=True, fontsize=fontsize_ticks)
 plt.xscale("log")
 plt.xlabel("Número de personas", fontsize=fontsize_ticks)
 plt.ylabel("")
-plt.savefig(sys_path + "/figures/CH_NumPersonas" + yr + ".pdf", bbox_inches="tight")
+plt.savefig("reports/figures/CH_NumPersonas" + yr + ".pdf", bbox_inches="tight")
 plt.show()
 
 ENIGH.drop(columns=["sex_hhrp", "age_habit"], inplace=True)
 t = "CH"
-ENIGH.to_csv(sys_path + data_path + "/ENIGH_" + t + yr + ".csv", index=True)
+ENIGH.to_csv(data_path + "/ENIGH_" + t + yr + ".csv", index=True)
 
 personclass = {}
 for ps in ENIGH.node.unique():
@@ -95,7 +94,7 @@ axins.set_xlim(x1, x2)
 axins.set_ylim(y1, y2)
 ax.indicate_inset_zoom(axins, edgecolor="black")
 ax.get_legend().remove()
-plt.savefig(sys_path + "/figures/Energia_Corriente_Zscore.png", bbox_inches="tight", dpi=100)
+plt.savefig("reports/figures/Energia_Corriente_Zscore.png", bbox_inches="tight", dpi=100)
 plt.show()
 
 cov_mtx = np.cov(ps_std_df.alfabetism, ps_std_df.energia)
@@ -127,7 +126,7 @@ axins.set_xlim(x1, x2)
 axins.set_ylim(y1, y2)
 ax.indicate_inset_zoom(axins, edgecolor="black")
 ax.get_legend().remove()
-plt.savefig(sys_path + "/figures/Energia_Alfabetismo_Zscore.png", bbox_inches="tight", dpi=100)
+plt.savefig("reports/figures/Energia_Alfabetismo_Zscore.png", bbox_inches="tight", dpi=100)
 plt.show()
 
 f = plt.figure(figsize=(8 * 1.6, 8))
@@ -150,7 +149,7 @@ ax2.set_xlim((-5, 1650000))
 ax.set_ylabel("Energia (MXN)", fontsize=fontsize_ticks)
 ax.set_xlabel("Ingreso corriente (MXN)", fontsize=fontsize_ticks)
 ax2.set_xlabel("Alfabetismo (-)", fontsize=fontsize_ticks)
-plt.savefig(sys_path + "/figures/Energia_Alfabetismo_Diferencias.png", bbox_inches="tight", dpi=50)
+plt.savefig("reports/figures/Energia_Alfabetismo_Diferencias.png", bbox_inches="tight", dpi=50)
 plt.show()
 
 f = plt.figure(figsize=(8 * 1.6, 8))
@@ -169,8 +168,7 @@ ax2.set_xlim((-1, 30))
 ax.set_ylabel("Z score Energia (-)", fontsize=fontsize_ticks)
 ax.set_xlabel("Z score Ingreso corriente (-)", fontsize=fontsize_ticks)
 ax2.set_xlabel("Z score Alfabetismo (-)", fontsize=fontsize_ticks)
-plt.savefig(
-    sys_path + "/figures/Energia_Alfabetismp_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
+plt.savefig("reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
 )
 plt.show()
 
@@ -196,9 +194,9 @@ ax.tick_params(labelsize=fontsize_ticks)
 sns.heatmap(cov_matrix_CH, cmap="jet")
 cax = plt.gcf().axes[-1]
 cax.tick_params(labelsize=fontsize_ticks)
-plt.savefig(sys_path + "/figures/CovMatrix_Heatmap" + yr + ".pdf", bbox_inches="tight")
+plt.savefig("reports/figures/CovMatrix_Heatmap" + yr + ".pdf", bbox_inches="tight")
 plt.show()
 
 # Save covariance matrix Household Classification
 t = "CH"
-cov_matrix_CH.to_csv(sys_path + data_path + "cov_matrix_" + t + yr + ".csv", index=True)
+cov_matrix_CH.to_csv(data_path + "cov_matrix_" + t + yr + ".csv", index=True)
