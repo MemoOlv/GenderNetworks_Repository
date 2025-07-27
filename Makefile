@@ -1,4 +1,5 @@
-all: reports/figures/ValoresNulos2016.pdf
+all: reports/figures/ValoresNulos2016.pdf \
+	data/cov_matrix_CH2016.csv
 
 .PHONY: \
 		all \
