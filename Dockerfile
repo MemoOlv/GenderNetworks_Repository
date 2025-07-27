@@ -9,4 +9,5 @@ RUN pip install \
     matplotlib \
     numpy \
     pandas \
+    scipy \
     seaborn
