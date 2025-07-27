@@ -175,7 +175,7 @@ plt.show()
 
 personclass_energy = {}
 for ps in ps_newlist:
-    personclass_energy[ps] = abs(personclass_std[ps].cov().energia)
+    personclass_energy[ps] = abs(personclass_std[ps].cov(numeric_only=True).energia)
     personclass_energy[ps].drop(["energia", "vivienda"], inplace=True)
 
 series = list()
