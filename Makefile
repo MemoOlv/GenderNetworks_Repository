@@ -47,6 +47,30 @@ data/ENIGH2016/poblacion.csv:
 	--output data/ENIGH2016/poblacion.zip
 	unzip data/ENIGH2016/poblacion.zip -d data/ENIGH2016
 
+data/ENIGH2018/viviendas.csv:
+	$(checkDirectories)
+	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_viviendas_csv.zip \
+	--output data/ENIGH2018/viviendas.zip
+	unzip -o data/ENIGH2018/viviendas.zip -d data/ENIGH2018
+
+data/ENIGH2018/hogares.csv:
+	$(checkDirectories)
+	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_hogares_csv.zip \
+	--output data/ENIGH2018/hogares.zip
+	unzip data/ENIGH2018/hogares.zip -d data/ENIGH2018
+
+data/ENIGH2018/concentradohogar.csv:
+	$(checkDirectories)
+	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_concentradohogar_csv.zip \
+	--output data/ENIGH2018/concentradohogar.zip
+	unzip -o data/ENIGH2018/concentradohogar.zip -d data/ENIGH2018
+
+data/ENIGH2018/poblacion.csv:
+	$(checkDirectories)
+	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_poblacion_csv.zip \
+	--output data/ENIGH2018/poblacion.zip
+	unzip data/ENIGH2018/poblacion.zip -d data/ENIGH2018
+
 reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf data/ENIGH2016_clean.csv: \
 	data/ENIGH2016/viviendas.csv \
 	data/ENIGH2016/hogares.csv \
