@@ -38,29 +38,29 @@ data/ENIGH2016/viviendas.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2016","viviendas")
 
-data/ENIGH2016/hogares.csv:
-	$(checkDirectories)
-	@$(call download_enigh_data_by_year,"2016","hogares")
-
-data/ENIGH2016/concentradohogar.csv:
-	$(checkDirectories)
-	@$(call download_enigh_data_by_year,"2016","concentradohogar")
-
-data/ENIGH2016/poblacion.csv:
-	$(checkDirectories)
-	@$(call download_enigh_data_by_year,"2016","poblacion")
-
 data/ENIGH2018/viviendas.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","viviendas")
+
+data/ENIGH2016/hogares.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2016","hogares")
 
 data/ENIGH2018/hogares.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","hogares")
 
+data/ENIGH2016/concentradohogar.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2016","concentradohogar")
+
 data/ENIGH2018/concentradohogar.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","concentradohogar")
+
+data/ENIGH2016/poblacion.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2016","poblacion")
 
 data/ENIGH2018/poblacion.csv:
 	$(checkDirectories)
