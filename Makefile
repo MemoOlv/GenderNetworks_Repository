@@ -22,6 +22,7 @@ clean:
 	rm --force --recursive data/ENIGH*.csv
 	rm --force --recursive data/cov*.csv
 	rm --force --recursive reports/figures/*.pdf
+	rm --force --recursive reports/figures/*.png
 
 format:
 	black --line-length 100 *.py
@@ -73,6 +74,14 @@ reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf
 	data/ENIGH2016/poblacion.csv
 	$(checkDirectories)
 	python data_cleaning.py 2016
+
+reports/figures/ValoresNulos2018.pdf reports/figures/ValoresNulosRemoval2018.pdf data/ENIGH2018_clean.csv: \
+	data/ENIGH2018/viviendas.csv \
+	data/ENIGH2018/hogares.csv \
+	data/ENIGH2018/concentradohogar.csv \
+	data/ENIGH2018/poblacion.csv
+	$(checkDirectories)
+	python data_cleaning.py 2018
 
 reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap data/cov_matrix_CH2016.csv: \
 	data/ENIGH2016_clean.csv
