@@ -73,7 +73,3 @@ def data_cleaning(year: int):
 
     ENIGH = ENIGH.dropna()
     ENIGH.to_csv(data_path + "ENIGH" + yr + "_clean.csv")
-
-
-if __name__ == "__main__":
-    typer.run(data_cleaning)
