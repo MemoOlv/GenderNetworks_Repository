@@ -83,8 +83,13 @@ reports/figures/ValoresNulos2018.pdf reports/figures/ValoresNulosRemoval2018.pdf
 	$(checkDirectories)
 	python data_cleaning.py 2018
 
-reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap data/cov_matrix_CH2016.csv: \
+reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismo_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap2016.pdf data/cov_matrix_CH2016.csv: \
 	data/ENIGH2016_clean.csv
 	$(checkDirectories)
 	python data_classification.py 2016
+
+reports/figures/CH_NumPersonas2018.pdf data/ENIGH_CH2018.csv reports/figures/CovMatrix_Heatmap2018.pdf data/cov_matrix_CH2018.csv: \
+	data/ENIGH2018_clean.csv
+	$(checkDirectories)
+	python data_classification.py 2018
 
