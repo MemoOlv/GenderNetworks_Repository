@@ -23,11 +23,17 @@ clean:
 format:
 	black --line-length 100 *.py
 
+define download_enigh_data_by_year =
+	@echo "downloading $(2) data for the $(1) ENIGH"
+	@echo "https://www.inegi.org.mx/contenidos/programas/enigh/nc/$(1)/microdatos/enigh$(1)_ns_$(2)_csv.zip"
+	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/$(1)/microdatos/enigh$(1)_ns_$(2)_csv.zip \
+	--output data/ENIGH$(1)/$(2).zip
+	unzip -o data/ENIGH$(1)/$(2).zip -d data/ENIGH$(2)
+endef
+
 data/ENIGH2016/viviendas.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_viviendas_csv.zip \
-	--output data/ENIGH2016/vivienda.zip
-	unzip -o data/ENIGH2016/vivienda.zip -d data/ENIGH2016
+	@$(call download_enigh_data_by_year,"2016","viviendas")
 
 data/ENIGH2016/hogares.csv:
 	$(checkDirectories)
