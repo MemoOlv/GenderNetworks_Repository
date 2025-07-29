@@ -18,6 +18,9 @@ check:
 clean:
 	rm --force --recursive .*_cache
 	rm --force --recursive data/ENIGH2016
+	rm --force --recursive data/ENIGH2018
+	rm --force --recursive data/ENIGH*.csv
+	rm --force --recursive data/cov*.csv
 	rm --force --recursive reports/figures/*.pdf
 
 format:
@@ -28,7 +31,7 @@ define download_enigh_data_by_year =
 	@echo "https://www.inegi.org.mx/contenidos/programas/enigh/nc/$(1)/microdatos/enigh$(1)_ns_$(2)_csv.zip"
 	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/$(1)/microdatos/enigh$(1)_ns_$(2)_csv.zip \
 	--output data/ENIGH$(1)/$(2).zip
-	unzip -o data/ENIGH$(1)/$(2).zip -d data/ENIGH$(2)
+	unzip -o data/ENIGH$(1)/$(2).zip -d data/ENIGH$(1)
 endef
 
 data/ENIGH2016/viviendas.csv:
@@ -37,45 +40,31 @@ data/ENIGH2016/viviendas.csv:
 
 data/ENIGH2016/hogares.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_hogares_csv.zip \
-	--output data/ENIGH2016/hogares.zip
-	unzip data/ENIGH2016/hogares.zip -d data/ENIGH2016
+	@$(call download_enigh_data_by_year,"2016","hogares")
 
 data/ENIGH2016/concentradohogar.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_concentradohogar_csv.zip \
-	--output data/ENIGH2016/concentradohogar.zip
-	unzip -o data/ENIGH2016/concentradohogar.zip -d data/ENIGH2016
+	@$(call download_enigh_data_by_year,"2016","concentradohogar")
 
 data/ENIGH2016/poblacion.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/microdatos/enigh2016_ns_poblacion_csv.zip \
-	--output data/ENIGH2016/poblacion.zip
-	unzip data/ENIGH2016/poblacion.zip -d data/ENIGH2016
+	@$(call download_enigh_data_by_year,"2016","poblacion")
 
 data/ENIGH2018/viviendas.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_viviendas_csv.zip \
-	--output data/ENIGH2018/viviendas.zip
-	unzip -o data/ENIGH2018/viviendas.zip -d data/ENIGH2018
+	@$(call download_enigh_data_by_year,"2018","viviendas")
 
 data/ENIGH2018/hogares.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_hogares_csv.zip \
-	--output data/ENIGH2018/hogares.zip
-	unzip data/ENIGH2018/hogares.zip -d data/ENIGH2018
+	@$(call download_enigh_data_by_year,"2018","hogares")
 
 data/ENIGH2018/concentradohogar.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_concentradohogar_csv.zip \
-	--output data/ENIGH2018/concentradohogar.zip
-	unzip -o data/ENIGH2018/concentradohogar.zip -d data/ENIGH2018
+	@$(call download_enigh_data_by_year,"2018","concentradohogar")
 
 data/ENIGH2018/poblacion.csv:
 	$(checkDirectories)
-	curl https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/microdatos/enigh2018_ns_poblacion_csv.zip \
-	--output data/ENIGH2018/poblacion.zip
-	unzip data/ENIGH2018/poblacion.zip -d data/ENIGH2018
+	@$(call download_enigh_data_by_year,"2018","poblacion")
 
 reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf data/ENIGH2016_clean.csv: \
 	data/ENIGH2016/viviendas.csv \
