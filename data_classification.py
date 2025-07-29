@@ -13,11 +13,11 @@ import lib.data_processing_functions as dpf
 
 app = typer.Typer()
 
+
 @app.command()
 def data_classification(year: int):
     lib_path = "lib"
     sys.path.insert(0, lib_path)
-
 
     sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
@@ -167,7 +167,9 @@ def data_classification(year: int):
     sns.scatterplot(data=ps_std_df, x="ing_cor", y="energia", ax=ax, color="blue", edgecolor=None)
     ax2 = ax.twiny()
     ax2.tick_params(labelsize=fontsize_ticks)
-    sns.scatterplot(data=ps_std_df, x="alfabetism", y="energia", ax=ax2, color="orange", edgecolor=None)
+    sns.scatterplot(
+        data=ps_std_df, x="alfabetism", y="energia", ax=ax2, color="orange", edgecolor=None
+    )
     ax.set_xlim((-1, 30))
     ax2.set_xlim((-1, 30))
     ax.set_ylabel("Z score Energia (-)", fontsize=fontsize_ticks)
@@ -206,6 +208,7 @@ def data_classification(year: int):
     # Save covariance matrix Household Classification
     t = "CH"
     cov_matrix_CH.to_csv(data_path + "cov_matrix_" + t + yr + ".csv", index=True)
+
 
 if __name__ == "__main__":
     typer.run(data_classification)

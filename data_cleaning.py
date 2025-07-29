@@ -11,11 +11,11 @@ import lib.data_processing_functions as dpf
 
 app = typer.Typer()
 
+
 @app.command()
 def data_cleaning(year: int):
     lib_path = "/lib"
     sys.path.insert(0, lib_path)
-
 
     sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
