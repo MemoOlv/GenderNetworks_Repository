@@ -10,4 +10,5 @@ RUN pip install \
     numpy \
     pandas \
     scipy \
-    seaborn
+    seaborn \
+    typer
