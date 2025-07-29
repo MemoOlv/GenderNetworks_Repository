@@ -77,5 +77,5 @@ reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf
 reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap data/cov_matrix_CH2016.csv: \
 	data/ENIGH2016_clean.csv
 	$(checkDirectories)
-	python data_classification.py
+	python data_classification.py 2016
 
