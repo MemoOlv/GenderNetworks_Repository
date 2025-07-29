@@ -206,3 +206,6 @@ def data_classification(year: int):
     # Save covariance matrix Household Classification
     t = "CH"
     cov_matrix_CH.to_csv(data_path + "cov_matrix_" + t + yr + ".csv", index=True)
+
+if __name__ == "__main__":
+    typer.run(data_classification)
