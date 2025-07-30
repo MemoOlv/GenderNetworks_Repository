@@ -127,6 +127,14 @@ reports/figures/ValoresNulos2020.pdf reports/figures/ValoresNulosRemoval2020.pdf
 	$(checkDirectories)
 	python data_cleaning.py 2020
 
+reports/figures/ValoresNulos2022.pdf reports/figures/ValoresNulosRemoval2022.pdf data/ENIGH2022_clean.csv: \
+	data/ENIGH2022/viviendas.csv \
+	data/ENIGH2022/hogares.csv \
+	data/ENIGH2022/concentradohogar.csv \
+	data/ENIGH2022/poblacion.csv
+	$(checkDirectories)
+	python data_cleaning.py 2022
+
 reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismo_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap2016.pdf data/cov_matrix_CH2016.csv: \
 	data/ENIGH2016_clean.csv
 	$(checkDirectories)
