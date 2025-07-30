@@ -1,7 +1,9 @@
 all: reports/figures/ValoresNulos2016.pdf \
 	reports/figures/ValoresNulos2018.pdf \
+	reports/figures/ValoresNulos2020.pdf \
 	data/cov_matrix_CH2016.csv \
-	data/cov_matrix_CH2018.csv
+	data/cov_matrix_CH2018.csv \
+	data/cov_matrix_CH2020.csv
 
 .PHONY: \
 		all \
@@ -45,6 +47,10 @@ data/ENIGH2018/viviendas.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","viviendas")
 
+data/ENIGH2020/viviendas.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2020","viviendas")
+
 data/ENIGH2016/hogares.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2016","hogares")
@@ -52,6 +58,10 @@ data/ENIGH2016/hogares.csv:
 data/ENIGH2018/hogares.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","hogares")
+
+data/ENIGH2020/hogares.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2020","hogares")
 
 data/ENIGH2016/concentradohogar.csv:
 	$(checkDirectories)
@@ -61,6 +71,10 @@ data/ENIGH2018/concentradohogar.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","concentradohogar")
 
+data/ENIGH2020/concentradohogar.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2020","concentradohogar")
+
 data/ENIGH2016/poblacion.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2016","poblacion")
@@ -68,6 +82,10 @@ data/ENIGH2016/poblacion.csv:
 data/ENIGH2018/poblacion.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2018","poblacion")
+
+data/ENIGH2020/poblacion.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2020","poblacion")
 
 reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf data/ENIGH2016_clean.csv: \
 	data/ENIGH2016/viviendas.csv \
@@ -85,6 +103,14 @@ reports/figures/ValoresNulos2018.pdf reports/figures/ValoresNulosRemoval2018.pdf
 	$(checkDirectories)
 	python data_cleaning.py 2018
 
+reports/figures/ValoresNulos2020.pdf reports/figures/ValoresNulosRemoval2020.pdf data/ENIGH2020_clean.csv: \
+	data/ENIGH2020/viviendas.csv \
+	data/ENIGH2020/hogares.csv \
+	data/ENIGH2020/concentradohogar.csv \
+	data/ENIGH2020/poblacion.csv
+	$(checkDirectories)
+	python data_cleaning.py 2020
+
 reports/figures/CH_NumPersonas2016.pdf data/ENIGH_CH2016.csv reports/figures/Energia_Corriente_Zscore.png reports/figures/Energia_Alfabetismo_Zscore.png reports/figures/Energia_Alfabetismo_Diferencias.png reports/figures/Energia_Alfabetismo_Diferencias_Zscore.png reports/figures/CovMatrix_Heatmap2016.pdf data/cov_matrix_CH2016.csv: \
 	data/ENIGH2016_clean.csv
 	$(checkDirectories)
@@ -95,3 +121,7 @@ reports/figures/CH_NumPersonas2018.pdf data/ENIGH_CH2018.csv reports/figures/Cov
 	$(checkDirectories)
 	python data_classification.py 2018
 
+reports/figures/CH_NumPersonas2020.pdf data/ENIGH_CH2020.csv reports/figures/CovMatrix_Heatmap2020.pdf data/cov_matrix_CH2020.csv: \
+	data/ENIGH2020_clean.csv
+	$(checkDirectories)
+	python data_classification.py 2020
