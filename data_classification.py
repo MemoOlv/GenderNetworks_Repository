@@ -176,7 +176,7 @@ def data_classification(year: int):
     ax.set_xlabel("Z score Ingreso corriente (-)", fontsize=fontsize_ticks)
     ax2.set_xlabel("Z score Alfabetismo (-)", fontsize=fontsize_ticks)
     plt.savefig(
-        "reports/figures/Energia_Alfabetismp_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
+        "reports/figures/Energia_Alfabetismo_Diferencias_Zscore.png", bbox_inches="tight", dpi=50
     )
     plt.show()
 
