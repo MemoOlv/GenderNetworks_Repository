@@ -51,6 +51,10 @@ data/ENIGH2020/viviendas.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2020","viviendas")
 
+data/ENIGH2022/viviendas.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2022","viviendas")
+
 data/ENIGH2016/hogares.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2016","hogares")
@@ -62,6 +66,10 @@ data/ENIGH2018/hogares.csv:
 data/ENIGH2020/hogares.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2020","hogares")
+
+data/ENIGH2022/hogares.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2022","hogares")
 
 data/ENIGH2016/concentradohogar.csv:
 	$(checkDirectories)
@@ -75,6 +83,10 @@ data/ENIGH2020/concentradohogar.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2020","concentradohogar")
 
+data/ENIGH2022/concentradohogar.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2022","concentradohogar")
+
 data/ENIGH2016/poblacion.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2016","poblacion")
@@ -86,6 +98,10 @@ data/ENIGH2018/poblacion.csv:
 data/ENIGH2020/poblacion.csv:
 	$(checkDirectories)
 	@$(call download_enigh_data_by_year,"2020","poblacion")
+
+data/ENIGH2022/poblacion.csv:
+	$(checkDirectories)
+	@$(call download_enigh_data_by_year,"2022","poblacion")
 
 reports/figures/ValoresNulos2016.pdf reports/figures/ValoresNulosRemoval2016.pdf data/ENIGH2016_clean.csv: \
 	data/ENIGH2016/viviendas.csv \
