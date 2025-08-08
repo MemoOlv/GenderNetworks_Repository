@@ -29,6 +29,9 @@ clean:
 	rm --force --recursive .*_cache
 	rm --force --recursive data/ENIGH2016
 	rm --force --recursive data/ENIGH2018
+	rm --force --recursive data/ENIGH2020
+	rm --force --recursive data/ENIGH2022
+	rm --force --recursive data/socialframeworkvariables
 	rm --force --recursive data/ENIGH*.csv
 	rm --force --recursive data/cov*.csv
 	rm --force --recursive reports/figures/*.pdf
