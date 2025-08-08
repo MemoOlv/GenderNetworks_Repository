@@ -6,7 +6,9 @@ RUN pip install --upgrade pip && pip install \
     flake8
 
 RUN pip install \
+    igraph \
     matplotlib \
+    networkx \
     numpy \
     pandas \
     scipy \
