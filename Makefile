@@ -6,7 +6,8 @@ all: reports/figures/ValoresNulos2016.pdf \
 	data/cov_matrix_CH2020.csv \
 	reports/figures/RepCov_HAdultos2016.pdf \
 	reports/figures/RepCov_HAdultos2018.pdf \
-	reports/figures/RepCov_HAdultos2020.pdf
+	reports/figures/RepCov_HAdultos2020.pdf \
+	data/socialframeworkvariables/c2016_1.csv
 
 .PHONY: \
 		all \
@@ -170,3 +171,8 @@ reports/figures/RepCov_HAdultos2020.pdf reports/figures/Representatividad_HAdult
 	data/cov_matrix_CH2020.csv
 	$(checkDirectories)
 	python variable_selection.py 2020
+
+data/socialframeworkvariables/c2016_1.csv reports/figures/RedCH2016.pdf reports/figures/Nodes_dynamic.pdf: \
+	data/cov_matrix_CH2020_cut.csv
+	$(checkDirectories)
+	python network_analysis.py
