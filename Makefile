@@ -22,6 +22,8 @@ endef
 check:
 	black --check --line-length 100 *.py
 	flake8 --max-line-length 100 *.py
+	black --check --line-length 100 lib/*.py
+	flake8 --max-line-length 100 lib/*.py
 
 clean:
 	rm --force --recursive .*_cache
@@ -34,6 +36,7 @@ clean:
 
 format:
 	black --line-length 100 *.py
+	black --line-length 100 lib/*.py
 
 define download_enigh_data_by_year =
 	@echo "downloading $(2) data for the $(1) ENIGH"
