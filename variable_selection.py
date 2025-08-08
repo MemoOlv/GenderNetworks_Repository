@@ -33,10 +33,6 @@ def variable_selection(year: int):
     # 0->cov_matrix 1->keys, 2>represent, 3->n_nodes
     R = dpf.ComputeRepresentativity(ENIGH, t, yr, data_path)
 
-    # Read ENIGH covariance matrix energy
-    cov_matrixr = pd.read_csv(data_path + "cov_matrix_" + t + yr + ".csv", index_col=[0])
-    cov_matrix = cov_matrixr.copy()
-
     # frames0 is a list that contains the criteria selection
     frames0 = list()
     for i in range(0, len(R[2])):
@@ -51,7 +47,6 @@ def variable_selection(year: int):
     crt_p = frames1[k]
     crt_pmax = crt_p[crt_p["covmul"] == crt_p["covmul"].max()]
     m = crt.value.mean()
-    sd = crt.value.std()
     crt_sort = crt.sort_values(by="num")
 
     f = plt.figure(figsize=(12, 8))
