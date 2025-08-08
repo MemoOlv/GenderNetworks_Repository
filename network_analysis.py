@@ -9,35 +9,26 @@ import matplotlib.gridspec as gridspec
 import seaborn as sns
 import random
 
-import network_analysis_functions as naf
+import lib.network_analysis_functions as naf
 
-sys_path = "/home/perroloco/Escritorio/GenderNetworks_Repository"
 lib_path = "/lib"
-sys.path.insert(0, sys_path + lib_path)
+sys.path.insert(0, lib_path)
 
 
 sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
 
-data_path = "/data/"
+data_path = "data/"
 t = "CH"  # Options CH, CP, MEPI
 crit = "static"  # Options static, dynamic
 seed = 100
 
 # Read data classification
-var_class = pd.read_csv(
-    sys_path + data_path + "/VariableClassification.csv", usecols=["Type", "Variable"]
-)
+var_class = pd.read_csv(data_path + "/VariableClassification.csv", usecols=["Type", "Variable"])
 var_class.set_index("Variable", inplace=True)
 
-cov_matrix2016 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2016" + "_cut.csv", index_col=[0]
-)
-cov_matrix2018 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2018" + "_cut.csv", index_col=[0]
-)
-cov_matrix2020 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2020" + "_cut.csv", index_col=[0]
-)
+cov_matrix2016 = pd.read_csv(data_path + "cov_matrix_" + t + "2016" + "_cut.csv", index_col=[0])
+cov_matrix2018 = pd.read_csv(data_path + "cov_matrix_" + t + "2018" + "_cut.csv", index_col=[0])
+cov_matrix2020 = pd.read_csv(data_path + "cov_matrix_" + t + "2020" + "_cut.csv", index_col=[0])
 
 Network2016 = naf.network_construction(cov_matrix2016)
 Network2018 = naf.network_construction(cov_matrix2018)
@@ -63,7 +54,7 @@ with sns.axes_style("white"):
         edge_color="lightgray",
         pos=nx.fruchterman_reingold_layout(Network2016[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/RedCH" + "2016" + ".pdf", bbox_inches="tight")
+plt.savefig("reports/figures/RedCH" + "2016" + ".pdf", bbox_inches="tight")
 plt.show()
 
 naf.global_properties(Network2016, top_nodes, botm_nodes)
@@ -88,7 +79,7 @@ with sns.axes_style("white"):
         edge_color="lightgray",
         pos=nx.fruchterman_reingold_layout(Network2018[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/RedCH" + "2018" + ".pdf", bbox_inches="tight")
+plt.savefig("reports/figures/RedCH" + "2018" + ".pdf", bbox_inches="tight")
 plt.show()
 
 naf.global_properties(Network2018, top_nodes, botm_nodes)
@@ -113,7 +104,7 @@ with sns.axes_style("white"):
         edge_color="lightgray",
         pos=nx.fruchterman_reingold_layout(Network2020[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/RedCH" + "2020" + ".pdf", bbox_inches="tight")
+plt.savefig("reports/figures/RedCH" + "2020" + ".pdf", bbox_inches="tight")
 plt.show()
 
 naf.global_properties(Network2020, top_nodes, botm_nodes)
@@ -155,7 +146,7 @@ ax.text(400, 25, "A", fontsize=fontsize_ticks, family="serif")
 ax.text(170, 20, "B", fontsize=fontsize_ticks, family="serif")
 ax.text(360, 20, "B", fontsize=fontsize_ticks, family="serif")
 ax.text(500, 18, "B", fontsize=fontsize_ticks, family="serif")
-plt.savefig(sys_path + "/figures/xFuerzayOrden_anios.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/xFuerzayOrden_anios.pdf", bbox_inches="tight")
 plt.show()
 
 Fuerza2016 = Fuerza[Fuerza.Año == "2016"]
@@ -201,7 +192,7 @@ ax.set(yscale="log", ylim=(0.01, 1.2), xscale="log", xlim=(0.5, 250))
 plt.xlabel("$k$", fontsize=fontsize_ticks)
 plt.ylabel("$p(k)$", fontsize=fontsize_ticks)
 ax.legend(fontsize=13, framealpha=0.1)
-plt.savefig(sys_path + "/figures/P_k.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/P_k.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -218,7 +209,7 @@ ax.set(yscale="log", ylim=(0.01, 1.2), xscale="log", xlim=(0.1, 250))
 plt.xlabel("$s$", fontsize=fontsize_ticks)
 plt.ylabel("$p(s)$", fontsize=fontsize_ticks)
 ax.legend(fontsize=13, framealpha=0.1)
-plt.savefig(sys_path + "/figures/P_s.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/P_s.pdf", bbox_inches="tight")
 plt.show()
 
 random.seed(seed)
@@ -247,7 +238,7 @@ sns.scatterplot(
 )
 plt.xlabel("No iteración", fontsize=fontsize_ticks)
 plt.ylabel("$Q$", fontsize=fontsize_ticks)
-plt.savefig(sys_path + "/figures/Comunidades_iter2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_iter2016.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -270,7 +261,7 @@ sns.scatterplot(
 )
 plt.xlabel("No iteración", fontsize=fontsize_ticks)
 plt.ylabel("$Q$", fontsize=fontsize_ticks)
-plt.savefig(sys_path + "/figures/Comunidades_iter2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_iter2018.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -293,7 +284,7 @@ sns.scatterplot(
 )
 plt.xlabel("No iteración", fontsize=fontsize_ticks)
 plt.ylabel("$Q$", fontsize=fontsize_ticks)
-plt.savefig(sys_path + "/figures/Comunidades_iter2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_iter2020.pdf", bbox_inches="tight")
 plt.show()
 
 color_map = naf.colors_community(Network2016[0], C2016[0])
@@ -309,7 +300,7 @@ with sns.axes_style("white"):
         node_color=color_map,
         pos=nx.fruchterman_reingold_layout(Network2016[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/Comunidades_color2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_color2016.pdf", bbox_inches="tight")
 plt.show()
 
 color_map = naf.colors_community(Network2018[0], C2018[0])
@@ -325,7 +316,7 @@ with sns.axes_style("white"):
         node_color=color_map,
         pos=nx.fruchterman_reingold_layout(Network2018[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/Comunidades_color2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_color2018.pdf", bbox_inches="tight")
 plt.show()
 
 color_map = naf.colors_community(Network2020[0], C2020[0])
@@ -341,18 +332,12 @@ with sns.axes_style("white"):
         node_color=color_map,
         pos=nx.fruchterman_reingold_layout(Network2020[0], seed=seed),
     )
-plt.savefig(sys_path + "/figures/Comunidades_color2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Comunidades_color2020.pdf", bbox_inches="tight")
 plt.show()
 
-cov_matrix2016 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2016" + "_cut.csv", index_col=[0]
-)
-cov_matrix2018 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2018" + "_cut.csv", index_col=[0]
-)
-cov_matrix2020 = pd.read_csv(
-    sys_path + data_path + "cov_matrix_" + t + "2020" + "_cut.csv", index_col=[0]
-)
+cov_matrix2016 = pd.read_csv(data_path + "cov_matrix_" + t + "2016" + "_cut.csv", index_col=[0])
+cov_matrix2018 = pd.read_csv(data_path + "cov_matrix_" + t + "2018" + "_cut.csv", index_col=[0])
+cov_matrix2020 = pd.read_csv(data_path + "cov_matrix_" + t + "2020" + "_cut.csv", index_col=[0])
 
 CH_codes = {
     "MAdultos": "M1",
@@ -404,14 +389,12 @@ ax.spines["top"].set_visible(False)
 ax.tick_params(labelsize=fontsize_ticks)
 # ax.hlines(y='H1',xmin='2016',xmax='2018')
 # ax.hlines(y='H1',xmin='2020',xmax='2018')
-sns.stripplot(
-    data=Nodesyr, x="Año", y="Nodes", hue="Presencia", ax=ax, s=10, linewidth=1, cmap="jet"
-)
+sns.stripplot(data=Nodesyr, x="Año", y="Nodes", hue="Presencia", ax=ax, s=10, linewidth=1)
 plt.xlabel("Año", fontsize=fontsize_ticks)
 plt.ylabel("Nodos", fontsize=fontsize_ticks)
 plt.yticks([])
 ax.legend(fontsize=20, framealpha=1, title="Años", title_fontsize=20)
-plt.savefig(sys_path + "/figures/Nodes_dynamic.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamic.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(25 * 0.623, 25))
@@ -424,16 +407,14 @@ ax.spines["top"].set_visible(False)
 ax.tick_params(labelsize=fontsize_ticks)
 # ax.hlines(y='H1',xmin='2016',xmax='2018')
 # ax.hlines(y='H1',xmin='2020',xmax='2018')
-sns.stripplot(
-    data=Nodesyr, x="Año", y="Nodes", hue="Presencia", ax=ax, s=10, linewidth=1, cmap="jet"
-)
+sns.stripplot(data=Nodesyr, x="Año", y="Nodes", hue="Presencia", ax=ax, s=10, linewidth=1)
 
 plt.xlabel("Año", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
 plt.yticks(fontsize=fontsize_ticks - 3)
 plt.xticks(fontsize=fontsize_ticks + 5)
 ax.legend(fontsize=20, framealpha=1, title="Presencia", title_fontsize=20)
-plt.savefig(sys_path + "/figures/Nodes_dynamic_detailed.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamic_detailed.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -458,7 +439,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 5)
 plt.yticks(fontsize=fontsize_ticks + 5)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
-plt.savefig(sys_path + "/figures/Heatvariables_redcompleta.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Heatvariables_redcompleta.pdf", bbox_inches="tight")
 plt.show()
 
 c1_2016 = list(C2016[0][0])
@@ -489,7 +470,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 10)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks)
 ax.legend(fontsize=15, framealpha=0.1, title_fontsize=13, title="Años")
-plt.savefig(sys_path + "/figures/Nodes_dynamics_G1.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamics_G1.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -513,7 +494,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 5)
 plt.yticks(fontsize=fontsize_ticks + 5)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
-plt.savefig(sys_path + "/figures/Heatvariables_G1.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Heatvariables_G1.pdf", bbox_inches="tight")
 plt.show()
 
 c2_2016 = list(C2016[0][1])
@@ -544,7 +525,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 10)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks)
 ax.legend(fontsize=15, framealpha=0.1, title_fontsize=13, title="Años")
-plt.savefig(sys_path + "/figures/Nodes_dynamics_G2.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamics_G2.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -568,7 +549,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 5)
 plt.yticks(fontsize=fontsize_ticks + 5)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
-plt.savefig(sys_path + "/figures/Heatvariables_G2.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Heatvariables_G2.pdf", bbox_inches="tight")
 plt.show()
 
 c3_2016 = list(C2016[0][2])
@@ -599,7 +580,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 10)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks)
 ax.legend(fontsize=15, framealpha=0.1, title_fontsize=13, title="Años")
-plt.savefig(sys_path + "/figures/Nodes_dynamics_G3.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamics_G3.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -623,7 +604,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 5)
 plt.yticks(fontsize=fontsize_ticks + 5)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
-plt.savefig(sys_path + "/figures/Heatvariables_G3.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Heatvariables_G3.pdf", bbox_inches="tight")
 plt.show()
 
 c4_2016 = list(C2016[0][3])
@@ -654,7 +635,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 10)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks)
 ax.legend(fontsize=15, framealpha=0.1, title_fontsize=13, title="Años")
-plt.savefig(sys_path + "/figures/Nodes_dynamics_G4.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Nodes_dynamics_G4.pdf", bbox_inches="tight")
 plt.show()
 
 f = plt.figure(figsize=(8, 8))
@@ -678,7 +659,7 @@ plt.xticks(["2016", "2018", "2020"], fontsize=fontsize_ticks + 5)
 plt.yticks(fontsize=fontsize_ticks + 5)
 plt.xlabel("", fontsize=fontsize_ticks + 10)
 plt.ylabel("", fontsize=fontsize_ticks + 10)
-plt.savefig(sys_path + "/figures/Heatvariables_G4.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/Heatvariables_G4.pdf", bbox_inches="tight")
 plt.show()
 
 c2016_1 = nx.subgraph(Network2016[0], C2016[0][0])
@@ -695,11 +676,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2016_1, seed=seed),
     )
 plt.title("Comunidad 1")
-plt.savefig(sys_path + "/figures/C1_2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C1_2016.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2016_1 = naf.community_description(c2016_1, var_class)
-vars_c2016_1.to_csv(sys_path + "/data/socialframeworkvariables/c2016_1.csv")
+vars_c2016_1.to_csv(data_path + "socialframeworkvariables/c2016_1.csv")
 
 # Community 2-2016
 
@@ -718,11 +699,11 @@ with sns.axes_style("white"):
         font_size=8,
     )
 plt.title("Comunidad 2")
-plt.savefig(sys_path + "/figures/C2_2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C2_2016.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2016_2 = naf.community_description(c2016_2, var_class)
-vars_c2016_2.to_csv(sys_path + "/data/socialframeworkvariables/c2016_2.csv")
+vars_c2016_2.to_csv(data_path + "socialframeworkvariables/c2016_2.csv")
 
 # Community 3-2016
 
@@ -740,11 +721,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2016_3, seed=seed),
     )
 plt.title("Comunidad 3")
-plt.savefig(sys_path + "/figures/C3_2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C3_2016.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2016_3 = naf.community_description(c2016_3, var_class)
-vars_c2016_3.to_csv(sys_path + "/data/socialframeworkvariables/c2016_3.csv")
+vars_c2016_3.to_csv(data_path + "/socialframeworkvariables/c2016_3.csv")
 
 # Community 4-2016
 
@@ -762,11 +743,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2016_4, seed=seed),
     )
 plt.title("Comunidad 4")
-plt.savefig(sys_path + "/figures/C4_2016.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C4_2016.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2016_4 = naf.community_description(c2016_4, var_class)
-vars_c2016_4.to_csv(sys_path + "/data/socialframeworkvariables/c2016_4.csv")
+vars_c2016_4.to_csv(data_path + "/socialframeworkvariables/c2016_4.csv")
 
 # Community 1-2018
 
@@ -784,11 +765,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2018_1, seed=seed),
     )
 plt.title("Comunidad 1")
-plt.savefig(sys_path + "/figures/C1_2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C1_2018.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2018_1 = naf.community_description(c2018_1, var_class)
-vars_c2018_1.to_csv(sys_path + "/data/socialframeworkvariables/c2018_1.csv")
+vars_c2018_1.to_csv(data_path + "/socialframeworkvariables/c2018_1.csv")
 
 # Community 2-2018
 
@@ -806,11 +787,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2018_2, seed=seed),
     )
 plt.title("Comunidad 2")
-plt.savefig(sys_path + "/figures/C2_2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C2_2018.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2018_2 = naf.community_description(c2018_2, var_class)
-vars_c2018_2.to_csv(sys_path + "/data/socialframeworkvariables/c2018_2.csv")
+vars_c2018_2.to_csv(data_path + "/socialframeworkvariables/c2018_2.csv")
 
 # Community 3-2018
 
@@ -829,11 +810,11 @@ with sns.axes_style("white"):
         font_size=9,
     )
 plt.title("Comunidad 3")
-plt.savefig(sys_path + "/figures/C3_2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C3_2018.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2018_3 = naf.community_description(c2018_3, var_class)
-vars_c2018_3.to_csv(sys_path + "/data/socialframeworkvariables/c2018_3.csv")
+vars_c2018_3.to_csv(data_path + "/socialframeworkvariables/c2018_3.csv")
 
 # Community 4-2018
 
@@ -851,11 +832,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2018_4, seed=seed),
     )
 plt.title("Comunidad 4")
-plt.savefig(sys_path + "/figures/C4_2018.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C4_2018.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2018_4 = naf.community_description(c2018_4, var_class)
-vars_c2018_4.to_csv(sys_path + "/data/socialframeworkvariables/c2018_4.csv")
+vars_c2018_4.to_csv(data_path + "/socialframeworkvariables/c2018_4.csv")
 
 # Community 1-2020
 
@@ -873,11 +854,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2020_1, seed=seed),
     )
 plt.title("Comunidad 1")
-plt.savefig(sys_path + "/figures/C1_2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C1_2020.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2020_1 = naf.community_description(c2020_1, var_class)
-vars_c2020_1.to_csv(sys_path + "/data/socialframeworkvariables/c2020_1.csv")
+vars_c2020_1.to_csv(data_path + "/socialframeworkvariables/c2020_1.csv")
 
 # Community 2-2020
 
@@ -895,11 +876,11 @@ with sns.axes_style("white"):
         pos=nx.fruchterman_reingold_layout(c2020_2, seed=seed),
     )
 plt.title("Comunidad 2")
-plt.savefig(sys_path + "/figures/C2_2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C2_2020.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2020_2 = naf.community_description(c2020_2, var_class)
-vars_c2020_2.to_csv(sys_path + "/data/socialframeworkvariables/c2020_2.csv")
+vars_c2020_2.to_csv(data_path + "/socialframeworkvariables/c2020_2.csv")
 
 # Community 3-2020
 
@@ -918,11 +899,11 @@ with sns.axes_style("white"):
         font_size=9,
     )
 plt.title("Comunidad 3")
-plt.savefig(sys_path + "/figures/C3_2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C3_2020.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2020_3 = naf.community_description(c2020_3, var_class)
-vars_c2020_3.to_csv(sys_path + "/data/socialframeworkvariables/c2020_3.csv")
+vars_c2020_3.to_csv(data_path + "/socialframeworkvariables/c2020_3.csv")
 
 # Community 4-2020
 
@@ -941,8 +922,8 @@ with sns.axes_style("white"):
         font_size=9,
     )
 plt.title("Comunidad 4")
-plt.savefig(sys_path + "/figures/C4_2020.pdf", bbox_inches="tight")
+plt.savefig("reports/figures/C4_2020.pdf", bbox_inches="tight")
 plt.show()
 
 vars_c2020_4 = naf.community_description(c2020_4, var_class)
-vars_c2020_4.to_csv(sys_path + "/data/socialframeworkvariables/c2020_4.csv")
+vars_c2020_4.to_csv(data_path + "/socialframeworkvariables/c2020_4.csv")
