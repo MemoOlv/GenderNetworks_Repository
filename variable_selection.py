@@ -10,11 +10,12 @@ import typer
 import lib.data_processing_functions as dpf
 
 app = typer.Typer()
+
+
 @app.command()
 def variable_selection(year: int):
     lib_path = "/lib"
     sys.path.insert(0, lib_path)
-
 
     sns.set_style("whitegrid", {"grid.linestyle": "--", "axes.edgecolor": "0"})
     data_path = "data/"
@@ -96,7 +97,9 @@ def variable_selection(year: int):
     ax.tick_params("y", labelsize=fontsize_ticks)
     sns.despine()
     new_ticks = [i for i in crt_sort.PC]
-    plt.xticks(range(0, len(new_ticks), 3), new_ticks[::3], fontsize=(fontsize_ticks - 5), rotation=90)
+    plt.xticks(
+        range(0, len(new_ticks), 3), new_ticks[::3], fontsize=(fontsize_ticks - 5), rotation=90
+    )
     ax = sns.lineplot(data=crt_sort, x="PC", y="value", marker="o", label="Rep$_{m}$")
     ax2 = ax.twinx()
     ax2.tick_params(labelsize=fontsize_ticks)
@@ -136,4 +139,3 @@ def variable_selection(year: int):
 
 if __name__ == "__main__":
     typer.run(variable_selection)
-
