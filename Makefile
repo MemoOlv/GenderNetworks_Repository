@@ -3,7 +3,10 @@ all: reports/figures/ValoresNulos2016.pdf \
 	reports/figures/ValoresNulos2020.pdf \
 	data/cov_matrix_CH2016.csv \
 	data/cov_matrix_CH2018.csv \
-	data/cov_matrix_CH2020.csv
+	data/cov_matrix_CH2020.csv \
+	reports/figures/RepCov_HAdultos2016.pdf \
+	reports/figures/RepCov_HAdultos2018.pdf \
+	reports/figures/RepCov_HAdultos2020.pdf
 
 .PHONY: \
 		all \
@@ -155,3 +158,15 @@ reports/figures/RepCov_HAdultos2016.pdf reports/figures/Representatividad_HAdult
 	data/cov_matrix_CH2016.csv
 	$(checkDirectories)
 	python variable_selection.py 2016
+
+reports/figures/RepCov_HAdultos2018.pdf reports/figures/Representatividad_HAdultos2018.pdf reports/figures/Rep_Pob_Hogares2018.pdf reports/figures/CovMatrixCut2018.pdf data/cov_matrix_CH2018_cut.csv: \
+	data/ENIGH2018_clean.csv \
+	data/cov_matrix_CH2018.csv
+	$(checkDirectories)
+	python variable_selection.py 2018
+
+reports/figures/RepCov_HAdultos2020.pdf reports/figures/Representatividad_HAdultos2020.pdf reports/figures/Rep_Pob_Hogares2020.pdf reports/figures/CovMatrixCut2020.pdf data/cov_matrix_CH2020_cut.csv: \
+	data/ENIGH2020_clean.csv \
+	data/cov_matrix_CH2020.csv
+	$(checkDirectories)
+	python variable_selection.py 2020
