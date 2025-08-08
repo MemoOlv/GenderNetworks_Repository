@@ -149,3 +149,9 @@ reports/figures/CH_NumPersonas2020.pdf data/ENIGH_CH2020.csv reports/figures/Cov
 	data/ENIGH2020_clean.csv
 	$(checkDirectories)
 	python data_classification.py 2020
+
+reports/figures/RepCov_HAdultos2016.pdf reports/figures/Representatividad_HAdultos2016.pdf reports/figures/Rep_Pob_Hogares2016.pdf reports/figures/CovMatrixCut2016.pdf data/cov_matrix_CH2016_cut.csv: \
+	data/ENIGH2016_clean.csv \
+	data/cov_matrix_CH2016.csv
+	$(checkDirectories)
+	python variable_selection.py 2016
